@@ -12,15 +12,14 @@ from torch.autograd import Variable
 import torch.backends.cudnn as cudnn
 from triplet_image_loader import TripletImageLoader
 from tripletnet import CS_Tripletnet
-from data_loader import SimpleDataManager
 from visdom import Visdom
 import numpy as np
 import Resnet_18
-from ccn import ConditionalContrastiveNetwork
+from csn import ConditionalSimNet
 
 # Training settings
-parser = argparse.ArgumentParser(description='PyTorch CCN Example')
-parser.add_argument('--batch-size', type=int, default=64, metavar='N',
+parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
+parser.add_argument('--batch-size', type=int, default=256, metavar='N',
                     help='input batch size for training (default: 64)')
 parser.add_argument('--epochs', type=int, default=200, metavar='N',
                     help='number of epochs to train (default: 200)')
@@ -38,21 +37,29 @@ parser.add_argument('--margin', type=float, default=0.2, metavar='M',
                     help='margin for triplet loss (default: 0.2)')
 parser.add_argument('--resume', default='', type=str,
                     help='path to latest checkpoint (default: none)')
-parser.add_argument('--name', default='Conditional_Contrastive_Network', type=str,
+parser.add_argument('--name', default='Conditional_Similarity_Network', type=str,
                     help='name of experiment')
+parser.add_argument('--embed_loss', type=float, default=5e-3, metavar='M',
+                    help='parameter for loss for embedding norm')
 parser.add_argument('--mask_loss', type=float, default=5e-4, metavar='M',
                     help='parameter for loss for mask norm')
-parser.add_argument('--dim_embed', type=int, default=128, metavar='N',
+parser.add_argument('--num_traintriplets', type=int, default=100000, metavar='N',
+                    help='how many unique training triplets (default: 100000)')
+parser.add_argument('--dim_embed', type=int, default=64, metavar='N',
                     help='how many dimensions in embedding (default: 64)')
-parser.add_argument('--dim_proj', type=int, default=32, metavar='N',
-                    help='how many dimensions in projection')
 parser.add_argument('--test', dest='test', action='store_true',
                     help='To only run inference on test set')
+parser.add_argument('--learned', dest='learned', action='store_true',
+                    help='To learn masks from random initialization')
+parser.add_argument('--prein', dest='prein', action='store_true',
+                    help='To initialize masks to be disjoint')
 parser.add_argument('--visdom', dest='visdom', action='store_true',
                     help='Use visdom to track and plot')
 parser.add_argument('--conditions', nargs='*', type=int,
                     help='Set of similarity notions')
 parser.set_defaults(test=False)
+parser.set_defaults(learned=False)
+parser.set_defaults(prein=False)
 parser.set_defaults(visdom=False)
 
 best_acc = 0
@@ -64,6 +71,9 @@ def main():
     torch.manual_seed(args.seed)
     if args.cuda:
         torch.cuda.manual_seed(args.seed)
+    if args.visdom:
+        global plotter 
+        plotter = VisdomLinePlotter(env_name=args.name)
     
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
@@ -75,22 +85,41 @@ def main():
         conditions = [0,1,2,3]
     
     kwargs = {'num_workers': 4, 'pin_memory': True} if args.cuda else {}
-
-    print("Loading Data ...")
-    train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=True)
-    train_loader = train_datamgr.get_data_loader('data/zap50k_meta.csv', split='train', aug=True)
-
-    val_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=True)
-    val_loader = val_datamgr.get_data_loader('data/zap50k_meta.csv', split='val', aug=False)
-
-    test_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=True)
-    test_loader = test_datamgr.get_data_loader('data/zap50k_meta.csv', split='test', aug=False)
-
-    print("Setting up Model ...")
+    train_loader = torch.utils.data.DataLoader(
+        TripletImageLoader('data', 'ut-zap50k-images', 'filenames.json', 
+            conditions, 'train', n_triplets=args.num_traintriplets,
+                        transform=transforms.Compose([
+                            transforms.Resize(112),
+                            transforms.CenterCrop(112),
+                            transforms.RandomHorizontalFlip(),
+                            transforms.ToTensor(),
+                            normalize,
+                    ])),
+        batch_size=args.batch_size, shuffle=True, **kwargs)
+    test_loader = torch.utils.data.DataLoader(
+        TripletImageLoader('data', 'ut-zap50k-images', 'filenames.json', 
+            conditions, 'test', n_triplets=160000,
+                        transform=transforms.Compose([
+                            transforms.Resize(112),
+                            transforms.CenterCrop(112),
+                            transforms.ToTensor(),
+                            normalize,
+                    ])),
+        batch_size=args.batch_size, shuffle=True, **kwargs)
+    val_loader = torch.utils.data.DataLoader(
+        TripletImageLoader('data', 'ut-zap50k-images', 'filenames.json', 
+            conditions, 'val', n_triplets=80000,
+                        transform=transforms.Compose([
+                            transforms.Resize(112),
+                            transforms.CenterCrop(112),
+                            transforms.ToTensor(),
+                            normalize,
+                    ])),
+        batch_size=args.batch_size, shuffle=True, **kwargs)
+    
     model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
-    ccn_model = ConditionalContrastiveNetwork(model, n_conditions=len(conditions),
-        embedding_size=args.dim_embed, projection_size=args.dim_proj)
-
+    csn_model = ConditionalSimNet(model, n_conditions=len(conditions), 
+        embedding_size=args.dim_embed, learnedmask=args.learned, prein=args.prein)
     global mask_var
     mask_var = csn_model.masks.weight
     tnet = CS_Tripletnet(csn_model)
@@ -196,7 +225,6 @@ def train(train_loader, tnet, criterion, optimizer, epoch):
         if epoch % 10 == 0:
             plotter.plot_mask(torch.nn.functional.relu(mask_var).data.cpu().numpy().T, epoch)
 
-
 def test(test_loader, tnet, criterion, epoch):
     losses = AverageMeter()
     accs = AverageMeter()
@@ -237,7 +265,6 @@ def test(test_loader, tnet, criterion, epoch):
         plotter.plot('loss', 'test', epoch, losses.avg)
     return accs.avg
 
-
 def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
     """Saves checkpoint to disk"""
     directory = "runs/%s/"%(args.name)
@@ -247,7 +274,6 @@ def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
     torch.save(state, filename)
     if is_best:
         shutil.copyfile(filename, 'runs/%s/'%(args.name) + 'model_best.pth.tar')
-
 
 class VisdomLinePlotter(object):
     """Plots to Visdom"""
@@ -279,7 +305,6 @@ class VisdomLinePlotter(object):
             )
         )
 
-
 class AverageMeter(object):
     """Computes and stores the average and current value"""
     def __init__(self):
@@ -297,7 +322,6 @@ class AverageMeter(object):
         self.count += n
         self.avg = self.sum / self.count
 
-
 def adjust_learning_rate(optimizer, epoch):
     """Sets the learning rate to the initial LR decayed by 10 every 30 epochs"""
     lr = args.lr * ((1 - 0.015) ** epoch)
@@ -306,18 +330,15 @@ def adjust_learning_rate(optimizer, epoch):
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
 
-
 def accuracy(dista, distb):
     margin = 0
     pred = (dista - distb - margin).cpu().data
     return (pred > 0).sum()*1.0/dista.size()[0]
 
-
 def accuracy_id(dista, distb, c, c_id):
     margin = 0
     pred = (dista - distb - margin).cpu().data
     return ((pred > 0)*(c.cpu().data == c_id)).sum()*1.0/(c.cpu().data == c_id).sum()
-
 
 if __name__ == '__main__':
     main()    

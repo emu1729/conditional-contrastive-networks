@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 
+
 class ConditionalSimNet(nn.Module):
     def __init__(self, embeddingnet, n_conditions, embedding_size, learnedmask=True, prein=False):
         """ embeddingnet: The network that projects the inputs into an embedding of embedding_size
@@ -41,6 +42,7 @@ class ConditionalSimNet(nn.Module):
                 mask_array[i, i*mask_len:(i+1)*mask_len] = 1
             # no gradients for the masks
             self.masks.weight = torch.nn.Parameter(torch.Tensor(mask_array), requires_grad=False)
+
     def forward(self, x, c):
         embedded_x = self.embeddingnet(x)
         self.mask = self.masks(c)
