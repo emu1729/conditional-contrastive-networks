@@ -3,8 +3,8 @@ images/
 runs/
 venv
 .ipynb_checkpoints
-.ipynb
+*.ipynb
 .idea/
 .git/
-__pycache/
+__pycache__/
 *.out
