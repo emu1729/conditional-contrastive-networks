@@ -84,7 +84,10 @@ identity = lambda x:x
 categories = ['Shoes', 'Boots', 'Sandals', 'Slippers']
 closures = ['Lace up', 'Slip-On', 'Zipper', 'Hook and Loop', 'Pull-on']
 genders = ['Women', 'Men', 'Girls', 'Boys']
-target_dict = {'Category':  categories, 'Closure': closures, 'Gender': genders}
+brands = ['Frye', 'Nike', 'Nine West', 'SKECHERS', 'Merrell', 'Cole Haan', 'Stuart Weitzman', 'PUMA', 'New Balance',
+          'UGG', 'Primigi Kids', 'Sperry Top-Sider', 'Naot Footwear', 'Sanuk', 'ASICS', 'Clarks', 'Anne Klein',
+          'Stride Rite', 'Born', 'Keen']
+target_dict = {'Category':  categories, 'Closure': closures, 'Gender': genders, 'Brand': brands}
 data_path = 'data/ut-zap50k-images/'
 
 

@@ -56,6 +56,10 @@ parser.add_argument('--dim_embed', type=int, default=128, metavar='N',
                     help='how many dimensions in embedding (default: 64)')
 parser.add_argument('--n_classes', type=int, default=4, metavar='N',
                     help='how many classes')
+parser.add_argument('--n_classes_prev', type=int, default=4, metavar='N',
+                    help='how many classes')
+parser.add_argument('--dim_proj', type=int, default=32, metavar='N',
+                    help='how many dimensions in projection for CCN')
 parser.add_argument('--category', type=str,
                     help='category to train for')
 
@@ -93,37 +97,49 @@ def main():
     if args.category:
         args.name = args.name + '_' + args.category
 
+    metadata_file = 'data/zap50k_meta.csv'
+    if args.category == 'Brand':
+        metadata_file = 'data/zap50k_meta_brand.csv'
+
     print("Loading Data ...")
     train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, targets=[args.category], supcon=False)
-    train_loader = train_datamgr.get_data_loader('data/zap50k_meta.csv', split='train', aug=True)
+    train_loader = train_datamgr.get_data_loader(metadata_file, split='train', aug=True)
 
     val_datamgr = SimpleDataManager(112, batch_size=args.batch_size, targets=[args.category], supcon=False)
-    val_loader = val_datamgr.get_data_loader('data/zap50k_meta.csv', split='val', aug=False)
+    val_loader = val_datamgr.get_data_loader(metadata_file, split='val', aug=False)
 
     test_datamgr = SimpleDataManager(112, batch_size=512, targets=[args.category], supcon=False)
-    test_loader = test_datamgr.get_data_loader('data/zap50k_meta.csv', split='test', aug=False)
+    test_loader = test_datamgr.get_data_loader(metadata_file, split='test', aug=False)
 
     if args.checkpoint:
+        print("Loading previous checkpoint ...")
         if args.prev_model == 'CCN':
             model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
             ccn_model = ConditionalContrastiveNetwork(model, n_conditions=3, embedding_size=args.dim_embed,
                                                       projection_size=args.dim_proj)
             checkpoint = torch.load(args.checkpoint)
-            ccn_model.load_state_dict(checkpoint['state_dict'])
-            model = cnn_model.embedding_net
-            for param in model.parameters():
-                param.requires_grad = False
+            ccn_model.load_state_dict(checkpoint['state'])
+            model = ccn_model.embedding_net
+        elif args.prev_model == 'CSN':
+            model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
+            csn_model = ConditionalSimNet(model, n_conditions=len(conditions),
+                                          embedding_size=args.dim_embed, learnedmask=True, prein=False)
+            tnet = CS_Tripletnet(csn_model)
+            checkpoint = torch.load(args.checkpoint)
+            tnet.load_state_dict(checkpoint['state_dict'])
+            model = tnet.embeddingnet.embeddingnet
         elif 'CE' in args.prev_model:
             model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
-            lin_model = LinearClassifier(model, embedding_size=args.dim_embed, n_classes=args.n_classes)
+            lin_model = LinearClassifier(model, embedding_size=args.dim_embed, n_classes=args.n_classes_prev)
             checkpoint = torch.load(args.checkpoint)
-            lin_model.load_state_dict(checkpoint['state_dict'])
+            lin_model.load_state_dict(checkpoint['state'])
             model = lin_model.embedding_net
-            for param in model.parameters():
-                param.requires_grad = False
         else:
             return ModuleNotFoundError("Model type is not found.")
         lin_model = LinearClassifier(model, embedding_size=args.dim_embed, n_classes=args.n_classes)
+        for param in lin_model.embedding_net.parameters():
+            param.requires_grad = False
+        print(lin_model)
     else:
         print("Setting up Model ...")
         model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
@@ -140,23 +156,27 @@ def main():
     cudnn.benchmark = True
     top1_best = 0
     test_acc = None
+    test_std = None
     for epoch in range(args.start_epoch, args.epochs + 1):
         # update learning rate
         adjust_learning_rate(optimizer, epoch)
         # train for one epoch
         train(train_loader, lin_model, criterion, optimizer, epoch, args)
-        losses, top1 = validate(val_loader, lin_model, criterion, args)
+        losses, top1, top1_std = validate(val_loader, lin_model, criterion, args)
         if top1 > top1_best:
+            top1_best = top1
             # remember best acc and save checkpoint
             directory = "runs/%s/" % (args.name)
             if not os.path.exists(directory):
                 os.makedirs(directory)
             filename = directory + "lr" + str(args.lr) + '_checkpoint.pth.tar'
             torch.save({'epoch': epoch, 'state': lin_model.state_dict()}, filename)
-            loss, test_acc = validate(test_loader, lin_model, criterion, args)
+            loss, test_acc, test_std = validate(test_loader, lin_model, criterion, args)
 
     print("Best Test Acc:")
     print(test_acc)
+    print("Best Test Std:")
+    print(test_std)
 
 
 def train(train_loader, classifier, criterion, optimizer, epoch, opt):
@@ -226,6 +246,8 @@ def validate(val_loader, classifier, criterion, opt):
     losses = AverageMeter()
     top1 = AverageMeter()
 
+    all_top1 = []
+
     with torch.no_grad():
         end = time.time()
         for idx, (features, labels) in enumerate(val_loader):
@@ -246,6 +268,8 @@ def validate(val_loader, classifier, criterion, opt):
             batch_time.update(time.time() - end)
             end = time.time()
 
+            all_top1.append(acc1[0].cpu().detach().numpy()[0])
+
             if idx % opt.print_freq == 0:
                 print('Test: [{0}/{1}]\t'
                       'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
@@ -255,7 +279,7 @@ def validate(val_loader, classifier, criterion, opt):
                        loss=losses, top1=top1))
 
     print(' * Acc@1 {top1.avg:.3f}'.format(top1=top1))
-    return losses.avg, top1.avg
+    return losses.avg, top1.avg, np.std(np.array(all_top1))
 
 
 def save_checkpoint(state, epoch, filename='checkpoint.pth.tar'):

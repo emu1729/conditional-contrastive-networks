@@ -12,7 +12,6 @@ from torch.autograd import Variable
 import torch.backends.cudnn as cudnn
 from triplet_image_loader import TripletImageLoader
 from tripletnet import CS_Tripletnet
-from visdom import Visdom
 import numpy as np
 import Resnet_18
 from csn import ConditionalSimNet
@@ -45,7 +44,7 @@ parser.add_argument('--mask_loss', type=float, default=5e-4, metavar='M',
                     help='parameter for loss for mask norm')
 parser.add_argument('--num_traintriplets', type=int, default=100000, metavar='N',
                     help='how many unique training triplets (default: 100000)')
-parser.add_argument('--dim_embed', type=int, default=64, metavar='N',
+parser.add_argument('--dim_embed', type=int, default=128, metavar='N',
                     help='how many dimensions in embedding (default: 64)')
 parser.add_argument('--test', dest='test', action='store_true',
                     help='To only run inference on test set')
@@ -53,14 +52,11 @@ parser.add_argument('--learned', dest='learned', action='store_true',
                     help='To learn masks from random initialization')
 parser.add_argument('--prein', dest='prein', action='store_true',
                     help='To initialize masks to be disjoint')
-parser.add_argument('--visdom', dest='visdom', action='store_true',
-                    help='Use visdom to track and plot')
 parser.add_argument('--conditions', nargs='*', type=int,
                     help='Set of similarity notions')
 parser.set_defaults(test=False)
 parser.set_defaults(learned=False)
 parser.set_defaults(prein=False)
-parser.set_defaults(visdom=False)
 
 best_acc = 0
 
@@ -71,9 +67,6 @@ def main():
     torch.manual_seed(args.seed)
     if args.cuda:
         torch.cuda.manual_seed(args.seed)
-    if args.visdom:
-        global plotter 
-        plotter = VisdomLinePlotter(env_name=args.name)
     
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
@@ -216,14 +209,6 @@ def train(train_loader, tnet, criterion, optimizer, epoch):
                 losses.val, losses.avg, 
                 100. * accs.val, 100. * accs.avg, emb_norms.val, emb_norms.avg))
 
-    # log avg values to visdom
-    if args.visdom:
-        plotter.plot('acc', 'train', epoch, accs.avg)
-        plotter.plot('loss', 'train', epoch, losses.avg)
-        plotter.plot('emb_norms', 'train', epoch, emb_norms.avg)
-        plotter.plot('mask_norms', 'train', epoch, mask_norms.avg)
-        if epoch % 10 == 0:
-            plotter.plot_mask(torch.nn.functional.relu(mask_var).data.cpu().numpy().T, epoch)
 
 def test(test_loader, tnet, criterion, epoch):
     losses = AverageMeter()
@@ -257,12 +242,6 @@ def test(test_loader, tnet, criterion, epoch):
 
     print('\nTest set: Average loss: {:.4f}, Accuracy: {:.2f}%\n'.format(
         losses.avg, 100. * accs.avg))
-    if args.visdom:
-        for condition in conditions:
-            plotter.plot('accs', 'acc_{}'.format(condition), epoch, accs_cs[condition].avg)
-        plotter.plot(args.name, args.name, epoch, accs.avg, env='overview')
-        plotter.plot('acc', 'test', epoch, accs.avg)
-        plotter.plot('loss', 'test', epoch, losses.avg)
     return accs.avg
 
 def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
@@ -274,36 +253,6 @@ def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
     torch.save(state, filename)
     if is_best:
         shutil.copyfile(filename, 'runs/%s/'%(args.name) + 'model_best.pth.tar')
-
-class VisdomLinePlotter(object):
-    """Plots to Visdom"""
-    def __init__(self, env_name='main'):
-        self.viz = Visdom()
-        self.env = env_name
-        self.plots = {}
-    def plot(self, var_name, split_name, x, y, env=None):
-        if env is not None:
-            print_env = env
-        else:
-            print_env = self.env
-        if var_name not in self.plots:
-            self.plots[var_name] = self.viz.line(X=np.array([x,x]), Y=np.array([y,y]), env=print_env, opts=dict(
-                legend=[split_name],
-                title=var_name,
-                xlabel='Epochs',
-                ylabel=var_name
-            ))
-        else:
-            self.viz.updateTrace(X=np.array([x]), Y=np.array([y]), env=print_env, win=self.plots[var_name], name=split_name)
-    def plot_mask(self, masks, epoch):
-        self.viz.bar(
-            X=masks,
-            env=self.env,
-            opts=dict(
-                stacked=True,
-                title=epoch,
-            )
-        )
 
 class AverageMeter(object):
     """Computes and stores the average and current value"""
@@ -325,8 +274,6 @@ class AverageMeter(object):
 def adjust_learning_rate(optimizer, epoch):
     """Sets the learning rate to the initial LR decayed by 10 every 30 epochs"""
     lr = args.lr * ((1 - 0.015) ** epoch)
-    if args.visdom:
-        plotter.plot('lr', 'learning rate', epoch, lr)
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
 
