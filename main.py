@@ -13,7 +13,7 @@ import torch.backends.cudnn as cudnn
 from triplet_image_loader import TripletImageLoader
 from tripletnet import CS_Tripletnet
 from data_loader import SimpleDataManager
-from visdom import Visdom
+from supcon import SupConLoss, CondSupConLoss
 import numpy as np
 import Resnet_18
 from ccn import ConditionalContrastiveNetwork
@@ -26,16 +26,16 @@ parser.add_argument('--epochs', type=int, default=200, metavar='N',
                     help='number of epochs to train (default: 200)')
 parser.add_argument('--start_epoch', type=int, default=1, metavar='N',
                     help='number of start epoch (default: 1)')
-parser.add_argument('--lr', type=float, default=5e-5, metavar='LR',
-                    help='learning rate (default: 5e-5)')
+parser.add_argument('--lr', type=float, default=0.1, metavar='LR',
+                    help='learning rate (default: 0.001)')
+parser.add_argument('--momentum', type=float, default=0.9, metavar='momentum',
+                    help='momentum')
+parser.add_argument('--weight_decay', type=float, default=1e-4, metavar='weight_decay',
+                    help='weight_decay')
 parser.add_argument('--seed', type=int, default=1, metavar='S',
                     help='random seed (default: 1)')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='enables CUDA training')
-parser.add_argument('--log-interval', type=int, default=20, metavar='N',
-                    help='how many batches to wait before logging training status')
-parser.add_argument('--margin', type=float, default=0.2, metavar='M',
-                    help='margin for triplet loss (default: 0.2)')
 parser.add_argument('--resume', default='', type=str,
                     help='path to latest checkpoint (default: none)')
 parser.add_argument('--name', default='Conditional_Contrastive_Network', type=str,
@@ -50,12 +50,11 @@ parser.add_argument('--test', dest='test', action='store_true',
                     help='To only run inference on test set')
 parser.add_argument('--visdom', dest='visdom', action='store_true',
                     help='Use visdom to track and plot')
-parser.add_argument('--conditions', nargs='*', type=int,
-                    help='Set of similarity notions')
 parser.set_defaults(test=False)
 parser.set_defaults(visdom=False)
 
 best_acc = 0
+
 
 def main():
     global args, best_acc
@@ -67,12 +66,6 @@ def main():
     
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
-
-    global conditions
-    if args.conditions is not None:
-        conditions = args.conditions
-    else:
-        conditions = [0,1,2,3]
     
     kwargs = {'num_workers': 4, 'pin_memory': True} if args.cuda else {}
 
@@ -80,22 +73,13 @@ def main():
     train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=True)
     train_loader = train_datamgr.get_data_loader('data/zap50k_meta.csv', split='train', aug=True)
 
-    val_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=True)
-    val_loader = val_datamgr.get_data_loader('data/zap50k_meta.csv', split='val', aug=False)
-
-    test_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=True)
-    test_loader = test_datamgr.get_data_loader('data/zap50k_meta.csv', split='test', aug=False)
-
     print("Setting up Model ...")
     model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
-    ccn_model = ConditionalContrastiveNetwork(model, n_conditions=len(conditions),
-        embedding_size=args.dim_embed, projection_size=args.dim_proj)
+    ccn_model = ConditionalContrastiveNetwork(model, n_conditions=3, embedding_size=args.dim_embed,
+                                              projection_size=args.dim_proj)
 
-    global mask_var
-    mask_var = csn_model.masks.weight
-    tnet = CS_Tripletnet(csn_model)
     if args.cuda:
-        tnet.cuda()
+        ccn_model.cuda()
 
     # optionally resume from a checkpoint
     if args.resume:
@@ -103,7 +87,6 @@ def main():
             print("=> loading checkpoint '{}'".format(args.resume))
             checkpoint = torch.load(args.resume)
             args.start_epoch = checkpoint['epoch']
-            best_prec1 = checkpoint['best_prec1']
             tnet.load_state_dict(checkpoint['state_dict'])
             print("=> loaded checkpoint '{}' (epoch {})"
                     .format(args.resume, checkpoint['epoch']))
@@ -112,141 +95,67 @@ def main():
 
     cudnn.benchmark = True
 
-    criterion = torch.nn.MarginRankingLoss(margin = args.margin)
-    parameters = filter(lambda p: p.requires_grad, tnet.parameters())
-    optimizer = optim.Adam(parameters, lr=args.lr)
-
-    n_parameters = sum([p.data.nelement() for p in tnet.parameters()])
-    print('  + Number of params: {}'.format(n_parameters))
-
-    if args.test:
-        test_acc = test(test_loader, tnet, criterion, 1)
-        sys.exit()
+    criterion = CondSupConLoss(n_conditions=3)
+    optimizer = torch.optim.SGD(ccn_model.parameters(), lr=args.lr, momentum=args.momentum,
+                                weight_decay=args.weight_decay)
 
     for epoch in range(args.start_epoch, args.epochs + 1):
         # update learning rate
         adjust_learning_rate(optimizer, epoch)
         # train for one epoch
-        train(train_loader, tnet, criterion, optimizer, epoch)
-        # evaluate on validation set
-        acc = test(val_loader, tnet, criterion, epoch)
+        train_contrastive(train_loader, ccn_model, criterion, optimizer, epoch, args.cuda)
 
-        # remember best acc and save checkpoint
-        is_best = acc > best_acc
-        best_acc = max(acc, best_acc)
-        save_checkpoint({
-            'epoch': epoch + 1,
-            'state_dict': tnet.state_dict(),
-            'best_prec1': best_acc,
-        }, is_best)
+        if epoch % 50 == 0:
+            # remember best acc and save checkpoint
+            directory = "runs/%s/" % (args.name)
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+            filename = directory + "lr" + str(args.lr) + "_epoch" + str(epoch) + '_checkpoint.pth.tar'
+            torch.save({'epoch': epoch, 'state': ccn_model.state_dict()}, filename)
 
-def train(train_loader, tnet, criterion, optimizer, epoch):
+
+def train_contrastive(train_loader, ccn_model, criterion, optimizer, epoch, cuda):
     losses = AverageMeter()
-    accs = AverageMeter()
-    emb_norms = AverageMeter()
-    mask_norms = AverageMeter()
 
     # switch to train mode
-    tnet.train()
-    for batch_idx, (data1, data2, data3, c) in enumerate(train_loader):
-        if args.cuda:
-            data1, data2, data3, c = data1.cuda(), data2.cuda(), data3.cuda(), c.cuda()
-        data1, data2, data3, c = Variable(data1), Variable(data2), Variable(data3), Variable(c)
+    ccn_model.train()
+    for batch_idx, (images, labels) in enumerate(train_loader):
+        images = torch.cat([images[0], images[1]], dim=0)
 
-        # compute output
-        dista, distb, mask_norm, embed_norm, mask_embed_norm = tnet(data1, data2, data3, c)
-        # 1 means, dista should be larger than distb
-        target = torch.FloatTensor(dista.size()).fill_(1)
-        if args.cuda:
-            target = target.cuda()
-        target = Variable(target)
-        
-        loss_triplet = criterion(dista, distb, target)
-        loss_embedd = embed_norm / np.sqrt(data1.size(0))
-        loss_mask = mask_norm / data1.size(0)
-        loss = loss_triplet + args.embed_loss * loss_embedd + args.mask_loss * loss_mask
+        if cuda:
+            images = images.cuda(non_blocking=True)
+            labels = labels.cuda(non_blocking=True)
+        bsz = labels[0].shape[0]
 
-        # measure accuracy and record loss
-        acc = accuracy(dista, distb)
-        losses.update(loss_triplet.data.item(), data1.size(0))
-        accs.update(acc, data1.size(0))
-        emb_norms.update(loss_embedd.data.item())
-        mask_norms.update(loss_mask.data.item())
+        features = ccn_model(images)
+        all_feat = []
+        for i in range(len(features)):
+            f1, f2 = torch.split(features[i], [bsz, bsz], dim=0)
+            all_feat.append(torch.cat([f1.unsqueeze(1), f2.unsqueeze(1)], dim=1))
+        loss = criterion(all_feat, labels)
+
+        # update metric
+        losses.update(loss.item(), bsz)
 
         # compute gradient and do optimizer step
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
 
-        if batch_idx % args.log_interval == 0:
-            print('Train Epoch: {} [{}/{}]\t'
-                  'Loss: {:.4f} ({:.4f}) \t'
-                  'Acc: {:.2f}% ({:.2f}%) \t'
-                  'Emb_Norm: {:.2f} ({:.2f})'.format(
-                epoch, batch_idx * len(data1), len(train_loader.dataset),
-                losses.val, losses.avg, 
-                100. * accs.val, 100. * accs.avg, emb_norms.val, emb_norms.avg))
-
-    # log avg values to visdom
-    if args.visdom:
-        plotter.plot('acc', 'train', epoch, accs.avg)
-        plotter.plot('loss', 'train', epoch, losses.avg)
-        plotter.plot('emb_norms', 'train', epoch, emb_norms.avg)
-        plotter.plot('mask_norms', 'train', epoch, mask_norms.avg)
-        if epoch % 10 == 0:
-            plotter.plot_mask(torch.nn.functional.relu(mask_var).data.cpu().numpy().T, epoch)
+        if batch_idx % 50 == 0:
+            print('Train Epoch: {} {}\t'
+                  'Loss: {:.4f} ({:.4f}) \t'.format(
+                epoch, batch_idx,
+                losses.val, losses.avg))
 
 
-def test(test_loader, tnet, criterion, epoch):
-    losses = AverageMeter()
-    accs = AverageMeter()
-    accs_cs = {}
-    for condition in conditions:
-        accs_cs[condition] = AverageMeter()
-
-    # switch to evaluation mode
-    tnet.eval()
-    for batch_idx, (data1, data2, data3, c) in enumerate(test_loader):
-        if args.cuda:
-            data1, data2, data3, c = data1.cuda(), data2.cuda(), data3.cuda(), c.cuda()
-        data1, data2, data3, c = Variable(data1), Variable(data2), Variable(data3), Variable(c)
-        c_test = c
-
-        # compute output
-        dista, distb, _, _, _ = tnet(data1, data2, data3, c)
-        target = torch.FloatTensor(dista.size()).fill_(1)
-        if args.cuda:
-            target = target.cuda()
-        target = Variable(target)
-        test_loss =  criterion(dista, distb, target).data.item()
-
-        # measure accuracy and record loss
-        acc = accuracy(dista, distb)
-        accs.update(acc, data1.size(0))
-        for condition in conditions:
-            accs_cs[condition].update(accuracy_id(dista, distb, c_test, condition), data1.size(0))
-        losses.update(test_loss, data1.size(0))      
-
-    print('\nTest set: Average loss: {:.4f}, Accuracy: {:.2f}%\n'.format(
-        losses.avg, 100. * accs.avg))
-    if args.visdom:
-        for condition in conditions:
-            plotter.plot('accs', 'acc_{}'.format(condition), epoch, accs_cs[condition].avg)
-        plotter.plot(args.name, args.name, epoch, accs.avg, env='overview')
-        plotter.plot('acc', 'test', epoch, accs.avg)
-        plotter.plot('loss', 'test', epoch, losses.avg)
-    return accs.avg
-
-
-def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
+def save_checkpoint(state, epoch, filename='checkpoint.pth.tar'):
     """Saves checkpoint to disk"""
     directory = "runs/%s/"%(args.name)
     if not os.path.exists(directory):
         os.makedirs(directory)
-    filename = directory + filename
+    filename = directory + 'epoch_' + epoch + filename
     torch.save(state, filename)
-    if is_best:
-        shutil.copyfile(filename, 'runs/%s/'%(args.name) + 'model_best.pth.tar')
 
 
 class VisdomLinePlotter(object):

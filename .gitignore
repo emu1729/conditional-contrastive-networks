@@ -1,4 +1,10 @@
-data
-images
+data/
+images/
+runs/
 venv
 .ipynb_checkpoints
+.ipynb
+.idea/
+.git/
+__pycache/
+*.out

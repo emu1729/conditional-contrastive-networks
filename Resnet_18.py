@@ -121,3 +121,15 @@ def resnet18(pretrained=False, **kwargs):
                 state[k] = loaded_state_dict[k]
         model.load_state_dict(state)
     return model
+
+
+class LinearClassifier(nn.Module):
+    """Linear classifier"""
+    def __init__(self, embedding_net, embedding_size, n_classes=10):
+        super(LinearClassifier, self).__init__()
+        self.fc = nn.Linear(embedding_size, n_classes)
+        self.embedding_net = embedding_net
+
+    def forward(self, x):
+        features = self.embedding_net(x)
+        return self.fc(features)
