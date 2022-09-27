@@ -18,7 +18,8 @@ import time
 import numpy as np
 import Resnet_18
 from Resnet_18 import LinearClassifier
-from ccn import ConditionalContrastiveNetwork
+from ccn import ConditionalContrastiveNetwork, MultiTaskNetwork, ContrastiveNetwork
+from csn import ConditionalSimNet
 
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch CCN Example')
@@ -122,18 +123,30 @@ def main():
             model = ccn_model.embedding_net
         elif args.prev_model == 'CSN':
             model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
-            csn_model = ConditionalSimNet(model, n_conditions=len(conditions),
+            csn_model = ConditionalSimNet(model, n_conditions=4,
                                           embedding_size=args.dim_embed, learnedmask=True, prein=False)
             tnet = CS_Tripletnet(csn_model)
             checkpoint = torch.load(args.checkpoint)
             tnet.load_state_dict(checkpoint['state_dict'])
             model = tnet.embeddingnet.embeddingnet
+        elif 'SupCon' in args.prev_model:
+            model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
+            con_model = ContrastiveNetwork(model, embedding_size=args.dim_embed, projection_size=args.dim_proj)
+            checkpoint = torch.load(args.checkpoint)
+            con_model.load_state_dict(checkpoint['state'])
+            model = con_model.embedding_net
         elif 'CE' in args.prev_model:
             model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
             lin_model = LinearClassifier(model, embedding_size=args.dim_embed, n_classes=args.n_classes_prev)
             checkpoint = torch.load(args.checkpoint)
             lin_model.load_state_dict(checkpoint['state'])
             model = lin_model.embedding_net
+        elif args.prev_model == 'MultiTask':
+            model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
+            mt_model = MultiTaskNetwork(model, embedding_size=args.dim_embed, cond_tasks=[4,5,4])
+            checkpoint = torch.load(args.checkpoint)
+            mt_model.load_state_dict(checkpoint['state'])
+            model = mt_model.embedding_net
         else:
             return ModuleNotFoundError("Model type is not found.")
         lin_model = LinearClassifier(model, embedding_size=args.dim_embed, n_classes=args.n_classes)

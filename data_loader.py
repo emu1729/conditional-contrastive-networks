@@ -139,6 +139,8 @@ class SimpleDataManager(DataManager):
             transform = TwoCropTransform(transform)
         dataset = SimpleDataset(data_file, split, transform, self.targets)
         data_loader_params = dict(batch_size = self.batch_size, shuffle = True, num_workers = 12, pin_memory = True)
+        if split == 'test':
+            data_loader_params = dict(batch_size = self.batch_size, shuffle = True, num_workers = 12, pin_memory = True)
         data_loader = torch.utils.data.DataLoader(dataset, **data_loader_params)
 
         return data_loader

@@ -16,17 +16,17 @@ from data_loader import SimpleDataManager
 from supcon import SupConLoss, CondSupConLoss
 import numpy as np
 import Resnet_18
-from ccn import ConditionalContrastiveNetwork, ContrastiveNetwork
+from ccn import ConditionalContrastiveNetwork, MultiTaskNetwork
 
 # Training settings
-parser = argparse.ArgumentParser(description='PyTorch CCN Example')
+parser = argparse.ArgumentParser(description='PyTorch MultiTask Example')
 parser.add_argument('--batch-size', type=int, default=64, metavar='N',
                     help='input batch size for training (default: 64)')
-parser.add_argument('--epochs', type=int, default=150, metavar='N',
+parser.add_argument('--epochs', type=int, default=200, metavar='N',
                     help='number of epochs to train (default: 200)')
 parser.add_argument('--start_epoch', type=int, default=1, metavar='N',
                     help='number of start epoch (default: 1)')
-parser.add_argument('--lr', type=float, default=0.05, metavar='LR',
+parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
                     help='learning rate (default: 0.001)')
 parser.add_argument('--momentum', type=float, default=0.9, metavar='momentum',
                     help='momentum')
@@ -38,18 +38,16 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='enables CUDA training')
 parser.add_argument('--resume', default='', type=str,
                     help='path to latest checkpoint (default: none)')
-parser.add_argument('--name', default='Conditional_Contrastive_Network', type=str,
+parser.add_argument('--name', default='Multi_Task_Network', type=str,
                     help='name of experiment')
+parser.add_argument('--mask_loss', type=float, default=5e-4, metavar='M',
+                    help='parameter for loss for mask norm')
 parser.add_argument('--dim_embed', type=int, default=128, metavar='N',
                     help='how many dimensions in embedding (default: 64)')
-parser.add_argument('--dim_proj', type=int, default=32, metavar='N',
-                    help='how many dimensions in projection')
 parser.add_argument('--test', dest='test', action='store_true',
                     help='To only run inference on test set')
 parser.add_argument('--visdom', dest='visdom', action='store_true',
                     help='Use visdom to track and plot')
-parser.add_argument('--category', type=str, default=None,
-                    help='SupCon if single category')
 parser.set_defaults(test=False)
 parser.set_defaults(visdom=False)
 
@@ -64,34 +62,16 @@ def main():
     if args.cuda:
         torch.cuda.manual_seed(args.seed)
 
-    if args.category:
-        args.name = args.name + '_' + args.category
-    
-    normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                     std=[0.229, 0.224, 0.225])
-    
-    kwargs = {'num_workers': 4, 'pin_memory': True} if args.cuda else {}
-
     print("Loading Data ...")
-    if args.category:
-        train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, targets=[args.category], supcon=True)
-        train_loader = train_datamgr.get_data_loader('data/zap50k_meta.csv', split='train', aug=True)
-        n_conditions = 1
-    else:
-        train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=True)
-        train_loader = train_datamgr.get_data_loader('data/zap50k_meta.csv', split='train', aug=True)
-        n_conditions = 3
+    train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=False)
+    train_loader = train_datamgr.get_data_loader('data/zap50k_meta.csv', split='train', aug=True)
 
     print("Setting up Model ...")
     model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
-    if n_conditions > 1:
-        ccn_model = ConditionalContrastiveNetwork(model, n_conditions=n_conditions, embedding_size=args.dim_embed,
-                                                  projection_size=args.dim_proj)
-    else:
-        ccn_model = ContrastiveNetwork(model, embedding_size=args.dim_embed, projection_size=args.dim_proj)
+    mt_model = MultiTaskNetwork(model, embedding_size=args.dim_embed, cond_tasks=[4,5,4])
 
     if args.cuda:
-        ccn_model.cuda()
+        mt_model.cuda()
 
     # optionally resume from a checkpoint
     if args.resume:
@@ -101,27 +81,21 @@ def main():
             args.start_epoch = checkpoint['epoch']
             ccn_model.load_state_dict(checkpoint['state_dict'])
             print("=> loaded checkpoint '{}' (epoch {})"
-                    .format(args.resume, checkpoint['epoch']))
+                  .format(args.resume, checkpoint['epoch']))
         else:
             print("=> no checkpoint found at '{}'".format(args.resume))
 
     cudnn.benchmark = True
 
-    if n_conditions > 1:
-        criterion = CondSupConLoss(n_conditions=n_conditions)
-    else:
-        criterion = SupConLoss()
-    optimizer = torch.optim.SGD(ccn_model.parameters(), lr=args.lr, momentum=args.momentum,
+    criterion = torch.nn.CrossEntropyLoss()
+    optimizer = torch.optim.SGD(mt_model.parameters(), lr=args.lr, momentum=args.momentum,
                                 weight_decay=args.weight_decay)
 
     for epoch in range(args.start_epoch, args.epochs + 1):
         # update learning rate
         adjust_learning_rate(optimizer, epoch)
         # train for one epoch
-        if n_conditions > 1:
-            train_contrastive(train_loader, ccn_model, criterion, optimizer, epoch, args.cuda)
-        else:
-            train_supcon(train_loader, ccn_model, criterion, optimizer, epoch, args.cuda)
+        train(train_loader, mt_model, criterion, optimizer, epoch, args.cuda)
 
         if epoch % 50 == 0:
             # remember best acc and save checkpoint
@@ -129,65 +103,26 @@ def main():
             if not os.path.exists(directory):
                 os.makedirs(directory)
             filename = directory + "lr" + str(args.lr) + "_epoch" + str(epoch) + '_checkpoint.pth.tar'
-            torch.save({'epoch': epoch, 'state': ccn_model.state_dict()}, filename)
+            torch.save({'epoch': epoch, 'state': mt_model.state_dict()}, filename)
 
 
-def train_supcon(train_loader, model, criterion, optimizer, epoch, cuda):
+def train(train_loader, model, criterion, optimizer, epoch, cuda):
     losses = AverageMeter()
 
     # switch to train mode
     model.train()
     for batch_idx, (images, labels) in enumerate(train_loader):
-        images = torch.cat([images[0], images[1]], dim=0)
+        images = images.float()
 
         if cuda:
             images = images.cuda(non_blocking=True)
-            labels = labels.cuda(non_blocking=True)
-
-        bsz = labels.shape[0]
-
-        features = model(images)
-        f1, f2 = torch.split(features, [bsz, bsz], dim=0)
-        all_feat = torch.cat([f1.unsqueeze(1), f2.unsqueeze(1)], dim=1)
-        loss = criterion(all_feat, labels)
-
-        # update metric
-        losses.update(loss.item(), bsz)
-
-        # compute gradient and do optimizer step
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-
-        if batch_idx % 50 == 0:
-            print('Train Epoch: {} {}\t'
-                  'Loss: {:.4f} ({:.4f}) \t'.format(
-                epoch, batch_idx,
-                losses.val, losses.avg))
-
-
-def train_contrastive(train_loader, ccn_model, criterion, optimizer, epoch, cuda):
-    losses = AverageMeter()
-
-    # switch to train mode
-    ccn_model.train()
-    for batch_idx, (images, labels) in enumerate(train_loader):
-        images = torch.cat([images[0], images[1]], dim=0)
-
-        print(images.size())
-
-        if cuda:
-            images = images.cuda(non_blocking=True)
-            labels = labels.cuda(non_blocking=True)
-
+            labels = [l.cuda() for l in labels]
         bsz = labels[0].shape[0]
 
-        features = ccn_model(images)
-        all_feat = []
+        features = model(images)
+        loss = 0
         for i in range(len(features)):
-            f1, f2 = torch.split(features[i], [bsz, bsz], dim=0)
-            all_feat.append(torch.cat([f1.unsqueeze(1), f2.unsqueeze(1)], dim=1))
-        loss = criterion(all_feat, labels)
+            loss += criterion(features[i], labels[i])
 
         # update metric
         losses.update(loss.item(), bsz)
@@ -206,7 +141,7 @@ def train_contrastive(train_loader, ccn_model, criterion, optimizer, epoch, cuda
 
 def save_checkpoint(state, epoch, filename='checkpoint.pth.tar'):
     """Saves checkpoint to disk"""
-    directory = "runs/%s/"%(args.name)
+    directory = "runs/%s/" % (args.name)
     if not os.path.exists(directory):
         os.makedirs(directory)
     filename = directory + 'epoch_' + epoch + filename
@@ -215,24 +150,28 @@ def save_checkpoint(state, epoch, filename='checkpoint.pth.tar'):
 
 class VisdomLinePlotter(object):
     """Plots to Visdom"""
+
     def __init__(self, env_name='main'):
         self.viz = Visdom()
         self.env = env_name
         self.plots = {}
+
     def plot(self, var_name, split_name, x, y, env=None):
         if env is not None:
             print_env = env
         else:
             print_env = self.env
         if var_name not in self.plots:
-            self.plots[var_name] = self.viz.line(X=np.array([x,x]), Y=np.array([y,y]), env=print_env, opts=dict(
+            self.plots[var_name] = self.viz.line(X=np.array([x, x]), Y=np.array([y, y]), env=print_env, opts=dict(
                 legend=[split_name],
                 title=var_name,
                 xlabel='Epochs',
                 ylabel=var_name
             ))
         else:
-            self.viz.updateTrace(X=np.array([x]), Y=np.array([y]), env=print_env, win=self.plots[var_name], name=split_name)
+            self.viz.updateTrace(X=np.array([x]), Y=np.array([y]), env=print_env, win=self.plots[var_name],
+                                 name=split_name)
+
     def plot_mask(self, masks, epoch):
         self.viz.bar(
             X=masks,
@@ -246,6 +185,7 @@ class VisdomLinePlotter(object):
 
 class AverageMeter(object):
     """Computes and stores the average and current value"""
+
     def __init__(self):
         self.reset()
 
@@ -274,13 +214,13 @@ def adjust_learning_rate(optimizer, epoch):
 def accuracy(dista, distb):
     margin = 0
     pred = (dista - distb - margin).cpu().data
-    return (pred > 0).sum()*1.0/dista.size()[0]
+    return (pred > 0).sum() * 1.0 / dista.size()[0]
 
 
 def accuracy_id(dista, distb, c, c_id):
     margin = 0
     pred = (dista - distb - margin).cpu().data
-    return ((pred > 0)*(c.cpu().data == c_id)).sum()*1.0/(c.cpu().data == c_id).sum()
+    return ((pred > 0) * (c.cpu().data == c_id)).sum() * 1.0 / (c.cpu().data == c_id).sum()
 
 
 if __name__ == '__main__':
