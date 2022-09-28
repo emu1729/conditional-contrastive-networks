@@ -26,12 +26,14 @@ class ConditionalContrastiveNetwork(nn.Module):
                 torch.nn.ReLU(inplace=True),
                 torch.nn.Linear(self.embedding_size, self.projection_size)
             ))
+        self.heads = torch.nn.ModuleList(self.heads)
 
     def forward(self, x):
         embed = self.embedding_net(x)
         feats = []
         for i in range(self.n_conditions):
             feats.append(F.normalize(self.heads[i](embed), dim=1))
+        feats = torch.stack(feats)
         return feats
 
 
@@ -82,10 +84,12 @@ class MultiTaskNetwork(nn.Module):
             self.heads.append(
                 torch.nn.Linear(self.embedding_size, cond_tasks[i])
             )
+        self.heads = torch.nn.ModuleList(self.heads)
 
     def forward(self, x):
         embed = self.embedding_net(x)
         res = []
         for i in range(self.n_conditions):
             res.append(self.heads[i](embed))
+        res = torch.stack(res)
         return res

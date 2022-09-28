@@ -173,8 +173,7 @@ def train_contrastive(train_loader, ccn_model, criterion, optimizer, epoch, cuda
     ccn_model.train()
     for batch_idx, (images, labels) in enumerate(train_loader):
         images = torch.cat([images[0], images[1]], dim=0)
-
-        print(images.size())
+        labels = torch.stack(labels)
 
         if cuda:
             images = images.cuda(non_blocking=True)
