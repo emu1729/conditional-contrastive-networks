@@ -50,6 +50,8 @@ parser.add_argument('--visdom', dest='visdom', action='store_true',
                     help='Use visdom to track and plot')
 parser.add_argument('--category', type=str, default=None,
                     help='SupCon if single category')
+parser.add_argument('--metadata', type=str, default='/data/ddmg/xray_data/zappos50k_data/zap50k_meta.csv',
+                    help='metadata filename')
 parser.set_defaults(test=False)
 parser.set_defaults(visdom=False)
 
@@ -75,11 +77,11 @@ def main():
     print("Loading Data ...")
     if args.category:
         train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, targets=[args.category], supcon=True)
-        train_loader = train_datamgr.get_data_loader('data/zap50k_meta.csv', split='train', aug=True)
+        train_loader = train_datamgr.get_data_loader(args.metadata, split='train', aug=True)
         n_conditions = 1
     else:
         train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=True)
-        train_loader = train_datamgr.get_data_loader('data/zap50k_meta.csv', split='train', aug=True)
+        train_loader = train_datamgr.get_data_loader(args.metadata, split='train', aug=True)
         n_conditions = 3
 
     print("Setting up Model ...")

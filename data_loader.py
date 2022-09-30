@@ -88,7 +88,6 @@ brands = ['Frye', 'Nike', 'Nine West', 'SKECHERS', 'Merrell', 'Cole Haan', 'Stua
           'UGG', 'Primigi Kids', 'Sperry Top-Sider', 'Naot Footwear', 'Sanuk', 'ASICS', 'Clarks', 'Anne Klein',
           'Stride Rite', 'Born', 'Keen']
 target_dict = {'Category':  categories, 'Closure': closures, 'Gender': genders, 'Brand': brands}
-#data_path = 'data/ut-zap50k-images/'
 data_path = '/data/ddmg/xray_data/zappos50k_data/ut-zap50k-images/'
 
 class SimpleDataset:

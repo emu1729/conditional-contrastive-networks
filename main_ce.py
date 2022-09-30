@@ -63,6 +63,8 @@ parser.add_argument('--dim_proj', type=int, default=32, metavar='N',
                     help='how many dimensions in projection for CCN')
 parser.add_argument('--category', type=str,
                     help='category to train for')
+parser.add_argument('--metadata', type=str, default='/data/ddmg/xray_data/zappos50k_data/zap50k_meta.csv',
+                    help='metadata filename')
 
 # other
 parser.add_argument('--seed', type=int, default=1, metavar='S',
@@ -98,19 +100,18 @@ def main():
     if args.category:
         args.name = args.name + '_' + args.category
 
-    metadata_file = 'data/zap50k_meta.csv'
     if args.category == 'Brand':
-        metadata_file = 'data/zap50k_meta_brand.csv'
+        args.metadata = '/data/ddmg/xray_data/zappos50k_data/zap50k_meta_brand.csv'
 
     print("Loading Data ...")
     train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, targets=[args.category], supcon=False)
-    train_loader = train_datamgr.get_data_loader(metadata_file, split='train', aug=True)
+    train_loader = train_datamgr.get_data_loader(args.metadata, split='train', aug=True)
 
     val_datamgr = SimpleDataManager(112, batch_size=args.batch_size, targets=[args.category], supcon=False)
-    val_loader = val_datamgr.get_data_loader(metadata_file, split='val', aug=False)
+    val_loader = val_datamgr.get_data_loader(args.metadata, split='val', aug=False)
 
     test_datamgr = SimpleDataManager(112, batch_size=512, targets=[args.category], supcon=False)
-    test_loader = test_datamgr.get_data_loader(metadata_file, split='test', aug=False)
+    test_loader = test_datamgr.get_data_loader(args.metadata, split='test', aug=False)
 
     if args.checkpoint:
         print("Loading previous checkpoint ...")

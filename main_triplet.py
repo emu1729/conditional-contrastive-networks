@@ -79,7 +79,7 @@ def main():
     
     kwargs = {'num_workers': 4, 'pin_memory': True} if args.cuda else {}
     train_loader = torch.utils.data.DataLoader(
-        TripletImageLoader('data', 'ut-zap50k-images', 'filenames.json', 
+        TripletImageLoader('/data/ddmg/xray_data/zappos50k_data', 'ut-zap50k-images', 'filenames.json',
             conditions, 'train', n_triplets=args.num_traintriplets,
                         transform=transforms.Compose([
                             transforms.Resize(112),
@@ -90,7 +90,7 @@ def main():
                     ])),
         batch_size=args.batch_size, shuffle=True, **kwargs)
     test_loader = torch.utils.data.DataLoader(
-        TripletImageLoader('data', 'ut-zap50k-images', 'filenames.json', 
+        TripletImageLoader('/data/ddmg/xray_data/zappos50k_data', 'ut-zap50k-images', 'filenames.json',
             conditions, 'test', n_triplets=160000,
                         transform=transforms.Compose([
                             transforms.Resize(112),
@@ -100,7 +100,7 @@ def main():
                     ])),
         batch_size=args.batch_size, shuffle=True, **kwargs)
     val_loader = torch.utils.data.DataLoader(
-        TripletImageLoader('data', 'ut-zap50k-images', 'filenames.json', 
+        TripletImageLoader('/data/ddmg/xray_data/zappos50k_data', 'ut-zap50k-images', 'filenames.json',
             conditions, 'val', n_triplets=80000,
                         transform=transforms.Compose([
                             transforms.Resize(112),

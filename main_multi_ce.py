@@ -48,6 +48,8 @@ parser.add_argument('--test', dest='test', action='store_true',
                     help='To only run inference on test set')
 parser.add_argument('--visdom', dest='visdom', action='store_true',
                     help='Use visdom to track and plot')
+parser.add_argument('--metadata', type=str, default='/data/ddmg/xray_data/zappos50k_data/zap50k_meta.csv',
+                    help='metadata filename')
 parser.set_defaults(test=False)
 parser.set_defaults(visdom=False)
 
@@ -64,7 +66,7 @@ def main():
 
     print("Loading Data ...")
     train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=False)
-    train_loader = train_datamgr.get_data_loader('data/zap50k_meta.csv', split='train', aug=True)
+    train_loader = train_datamgr.get_data_loader(args.metadata, split='train', aug=True)
 
     print("Setting up Model ...")
     model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
