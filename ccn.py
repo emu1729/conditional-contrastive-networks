@@ -91,5 +91,4 @@ class MultiTaskNetwork(nn.Module):
         res = []
         for i in range(self.n_conditions):
             res.append(self.heads[i](embed))
-        res = torch.stack(res)
         return res
