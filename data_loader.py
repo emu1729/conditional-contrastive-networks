@@ -67,11 +67,18 @@ class TransformLoader:
         else:
             return method()
 
-    def get_composed_transform(self, aug=False):
-        if aug:
-            transform_list = ['RandomSizedCrop', 'ImageJitter', 'RandomHorizontalFlip', 'ToTensor', 'Normalize']
+    def get_composed_transform(self, aug=False, add_jitter=True, to_PIL=False):
+        if to_PIL:
+            transform_list = ['ToPILImage']
         else:
-            transform_list = ['Resize', 'CenterCrop', 'ToTensor', 'Normalize']
+            transform_list = []
+
+        if aug and add_jitter:
+            transform_list += ['RandomSizedCrop', 'ImageJitter', 'RandomHorizontalFlip', 'ToTensor', 'Normalize']
+        elif aug and not add_jitter:
+            transform_list += ['RandomSizedCrop', 'RandomHorizontalFlip', 'ToTensor', 'Normalize']
+        else:
+            transform_list += ['Resize', 'CenterCrop', 'ToTensor', 'Normalize']
 
         transform_funcs = [self.parse_transform(x) for x in transform_list]
         transform = transforms.Compose(transform_funcs)
@@ -87,29 +94,38 @@ genders = ['Women', 'Men', 'Girls', 'Boys']
 brands = ['Frye', 'Nike', 'Nine West', 'SKECHERS', 'Merrell', 'Cole Haan', 'Stuart Weitzman', 'PUMA', 'New Balance',
           'UGG', 'Primigi Kids', 'Sperry Top-Sider', 'Naot Footwear', 'Sanuk', 'ASICS', 'Clarks', 'Anne Klein',
           'Stride Rite', 'Born', 'Keen']
-target_dict = {'Category':  categories, 'Closure': closures, 'Gender': genders, 'Brand': brands}
-data_path = '/data/ddmg/xray_data/zappos50k_data/ut-zap50k-images/'
+shapes = ["triangle", "square", "plus", "circle", "tee"]
+textures = ["solid", "stripes", "grid", "hexgrid", "dots"]
+shapes_v = ["rhombus", "pentagon", "star", "fivesquare", "trapezoid"]
+textures_v = ["noise", "triangles", "zigzags", "rain", "pluses"]
+target_dict = {'Category':  categories, 'Closure': closures, 'Gender': genders, 'Brand': brands, 'shape_t': shapes,
+               'texture_t': textures, 'shape_v': shapes_v, 'texture_v': textures_v}
 
 class SimpleDataset:
-    def __init__(self, data_file_meta, split, transform, targets=['Category', 'Closure', 'Gender'], target_transform=identity):
+    def __init__(self, data_file_meta, split, transform, targets=['Category', 'Closure', 'Gender'],
+                 data_path='/data/ddmg/xray_data/zappos50k_data/ut-zap50k-images/', target_transform=identity):
         df = pd.read_csv(data_file_meta)
         self.meta = df[df['split'] == split]
         self.meta = self.meta.reset_index(drop=True)
         self.transform = transform
         self.target_transform = target_transform
         self.targets = targets
+        self.data_path = data_path
 
     def __getitem__(self, i):
         image_path = os.path.join(self.meta['filename'][i])
-        img = Image.open(data_path + image_path).convert('RGB')
+        img = Image.open(self.data_path + image_path).convert('RGB')
         img = self.transform(img)
         target = []
         for target_cat in self.targets:
-            target_list = target_dict[target_cat]
-            if self.meta[target_cat].iloc[i] in target_list:
-                target.append(target_list.index(self.meta[target_cat].iloc[i]))
+            if target_cat in target_dict:
+                target_list = target_dict[target_cat]
+                if self.meta[target_cat].iloc[i] in target_list:
+                    target.append(target_list.index(self.meta[target_cat].iloc[i]))
+                else:
+                    target.append(np.NaN)
             else:
-                target.append(np.NaN)
+                target.append(self.meta[target_cat].iloc[i])
         if len(target) == 1:
             target = target[0]
         return img, target
@@ -125,21 +141,21 @@ class DataManager:
 
 
 class SimpleDataManager(DataManager):
-    def __init__(self, image_size, batch_size, targets=['Category', 'Closure', 'Gender'], supcon=False):
+    def __init__(self, image_size, batch_size, targets=['Category', 'Closure', 'Gender'],
+                 data_path='/data/ddmg/xray_data/zappos50k_data/ut-zap50k-images/', supcon=False):
         super(SimpleDataManager, self).__init__()
         self.batch_size = batch_size
         self.trans_loader = TransformLoader(image_size)
         self.supcon = supcon
         self.targets = targets
+        self.data_path = data_path
 
-    def get_data_loader(self, data_file, split, aug):
-        transform = self.trans_loader.get_composed_transform(aug)
+    def get_data_loader(self, data_file, split, aug, add_jitter=True):
+        transform = self.trans_loader.get_composed_transform(aug, add_jitter)
         if self.supcon:
             transform = TwoCropTransform(transform)
-        dataset = SimpleDataset(data_file, split, transform, self.targets)
+        dataset = SimpleDataset(data_file, split, transform, self.targets, self.data_path)
         data_loader_params = dict(batch_size = self.batch_size, shuffle=True, num_workers = 12, pin_memory = True)
-        if split == 'test':
-            data_loader_params = dict(batch_size = self.batch_size, shuffle = True, num_workers = 12, pin_memory = True)
         data_loader = torch.utils.data.DataLoader(dataset, **data_loader_params)
 
         return data_loader

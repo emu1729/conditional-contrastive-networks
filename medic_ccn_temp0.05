@@ -1,0 +1,2260 @@
+['damage_severity', 'disaster_types', 'humanitarian', 'informative']
+Loading Data ...
+Setting up Model ...
+2048
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/torchvision/transforms/transforms.py:936: UserWarning: The use of the transforms.RandomSizedCrop transform is deprecated, please use transforms.RandomResizedCrop instead.
+  "please use transforms.RandomResizedCrop instead.")
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 1 0	Loss: 20.2652 (20.2652) 	
+[1, 1, 1, 1]
+Train Epoch: 1 50	Loss: 18.8686 (19.1281) 	
+[1, 1, 1, 1]
+Train Epoch: 1 100	Loss: 19.2106 (19.0383) 	
+[1, 1, 1, 1]
+Train Epoch: 1 150	Loss: 18.7760 (18.9923) 	
+[1, 1, 1, 1]
+Train Epoch: 1 200	Loss: 18.9089 (18.9561) 	
+[1, 1, 1, 1]
+Train Epoch: 1 250	Loss: 18.9264 (18.9229) 	
+[1, 1, 1, 1]
+Train Epoch: 1 300	Loss: 18.6831 (18.9039) 	
+[1, 1, 1, 1]
+Train Epoch: 1 350	Loss: 18.7043 (18.8857) 	
+[1, 1, 1, 1]
+Train Epoch: 1 400	Loss: 18.5724 (18.8624) 	
+[1, 1, 1, 1]
+Train Epoch: 1 450	Loss: 18.6612 (18.8517) 	
+[1, 1, 1, 1]
+Train Epoch: 1 500	Loss: 18.8300 (18.8362) 	
+[1, 1, 1, 1]
+Train Epoch: 1 550	Loss: 18.7654 (18.8200) 	
+[1, 1, 1, 1]
+Train Epoch: 1 600	Loss: 18.5541 (18.8072) 	
+[1, 1, 1, 1]
+Train Epoch: 1 650	Loss: 18.9539 (18.7987) 	
+[1, 1, 1, 1]
+Train Epoch: 1 700	Loss: 18.5121 (18.7893) 	
+[1, 1, 1, 1]
+Train Epoch: 1 750	Loss: 18.8550 (18.7769) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 2 0	Loss: 18.4362 (18.4362) 	
+[1, 1, 1, 1]
+Train Epoch: 2 50	Loss: 18.6280 (18.6074) 	
+[1, 1, 1, 1]
+Train Epoch: 2 100	Loss: 18.7333 (18.6184) 	
+[1, 1, 1, 1]
+Train Epoch: 2 150	Loss: 18.4859 (18.6103) 	
+[1, 1, 1, 1]
+Train Epoch: 2 200	Loss: 18.1885 (18.6025) 	
+[1, 1, 1, 1]
+Train Epoch: 2 250	Loss: 18.2669 (18.6031) 	
+[1, 1, 1, 1]
+Train Epoch: 2 300	Loss: 18.8319 (18.6121) 	
+[1, 1, 1, 1]
+Train Epoch: 2 350	Loss: 18.2262 (18.6016) 	
+[1, 1, 1, 1]
+Train Epoch: 2 400	Loss: 18.9969 (18.5950) 	
+[1, 1, 1, 1]
+Train Epoch: 2 450	Loss: 18.6272 (18.5953) 	
+[1, 1, 1, 1]
+Train Epoch: 2 500	Loss: 18.3207 (18.5885) 	
+[1, 1, 1, 1]
+Train Epoch: 2 550	Loss: 18.1289 (18.5855) 	
+[1, 1, 1, 1]
+Train Epoch: 2 600	Loss: 18.1655 (18.5780) 	
+[1, 1, 1, 1]
+Train Epoch: 2 650	Loss: 18.6395 (18.5758) 	
+[1, 1, 1, 1]
+Train Epoch: 2 700	Loss: 18.5762 (18.5717) 	
+[1, 1, 1, 1]
+Train Epoch: 2 750	Loss: 18.1355 (18.5675) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 3 0	Loss: 18.5306 (18.5306) 	
+[1, 1, 1, 1]
+Train Epoch: 3 50	Loss: 19.0683 (18.5332) 	
+[1, 1, 1, 1]
+Train Epoch: 3 100	Loss: 18.1344 (18.5001) 	
+[1, 1, 1, 1]
+Train Epoch: 3 150	Loss: 18.7529 (18.4948) 	
+[1, 1, 1, 1]
+Train Epoch: 3 200	Loss: 18.3212 (18.4922) 	
+[1, 1, 1, 1]
+Train Epoch: 3 250	Loss: 18.0686 (18.4930) 	
+[1, 1, 1, 1]
+Train Epoch: 3 300	Loss: 18.7526 (18.4832) 	
+[1, 1, 1, 1]
+Train Epoch: 3 350	Loss: 18.8800 (18.4842) 	
+[1, 1, 1, 1]
+Train Epoch: 3 400	Loss: 18.6066 (18.4753) 	
+[1, 1, 1, 1]
+Train Epoch: 3 450	Loss: 18.4032 (18.4813) 	
+[1, 1, 1, 1]
+Train Epoch: 3 500	Loss: 18.6400 (18.4739) 	
+[1, 1, 1, 1]
+Train Epoch: 3 550	Loss: 18.4905 (18.4705) 	
+[1, 1, 1, 1]
+Train Epoch: 3 600	Loss: 18.5418 (18.4698) 	
+[1, 1, 1, 1]
+Train Epoch: 3 650	Loss: 18.1503 (18.4590) 	
+[1, 1, 1, 1]
+Train Epoch: 3 700	Loss: 17.7965 (18.4599) 	
+[1, 1, 1, 1]
+Train Epoch: 3 750	Loss: 18.2654 (18.4592) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 4 0	Loss: 18.1739 (18.1739) 	
+[1, 1, 1, 1]
+Train Epoch: 4 50	Loss: 18.4408 (18.4453) 	
+[1, 1, 1, 1]
+Train Epoch: 4 100	Loss: 18.3731 (18.4624) 	
+[1, 1, 1, 1]
+Train Epoch: 4 150	Loss: 18.4424 (18.4477) 	
+[1, 1, 1, 1]
+Train Epoch: 4 200	Loss: 18.3483 (18.4444) 	
+[1, 1, 1, 1]
+Train Epoch: 4 250	Loss: 18.4157 (18.4389) 	
+[1, 1, 1, 1]
+Train Epoch: 4 300	Loss: 18.1595 (18.4328) 	
+[1, 1, 1, 1]
+Train Epoch: 4 350	Loss: 18.2561 (18.4221) 	
+[1, 1, 1, 1]
+Train Epoch: 4 400	Loss: 18.5510 (18.4094) 	
+[1, 1, 1, 1]
+Train Epoch: 4 450	Loss: 18.2687 (18.4081) 	
+[1, 1, 1, 1]
+Train Epoch: 4 500	Loss: 18.3244 (18.4055) 	
+[1, 1, 1, 1]
+Train Epoch: 4 550	Loss: 18.6286 (18.4033) 	
+[1, 1, 1, 1]
+Train Epoch: 4 600	Loss: 18.2222 (18.4073) 	
+[1, 1, 1, 1]
+Train Epoch: 4 650	Loss: 18.0928 (18.4021) 	
+[1, 1, 1, 1]
+Train Epoch: 4 700	Loss: 18.4741 (18.4048) 	
+[1, 1, 1, 1]
+Train Epoch: 4 750	Loss: 18.2429 (18.4029) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 5 0	Loss: 18.1348 (18.1348) 	
+[1, 1, 1, 1]
+Train Epoch: 5 50	Loss: 18.2679 (18.3654) 	
+[1, 1, 1, 1]
+Train Epoch: 5 100	Loss: 18.4138 (18.3363) 	
+[1, 1, 1, 1]
+Train Epoch: 5 150	Loss: 18.4146 (18.3397) 	
+[1, 1, 1, 1]
+Train Epoch: 5 200	Loss: 17.9954 (18.3420) 	
+[1, 1, 1, 1]
+Train Epoch: 5 250	Loss: 18.6364 (18.3528) 	
+[1, 1, 1, 1]
+Train Epoch: 5 300	Loss: 18.6708 (18.3454) 	
+[1, 1, 1, 1]
+Train Epoch: 5 350	Loss: 18.7274 (18.3473) 	
+[1, 1, 1, 1]
+Train Epoch: 5 400	Loss: 18.2973 (18.3513) 	
+[1, 1, 1, 1]
+Train Epoch: 5 450	Loss: 18.0778 (18.3461) 	
+[1, 1, 1, 1]
+Train Epoch: 5 500	Loss: 18.2658 (18.3428) 	
+[1, 1, 1, 1]
+Train Epoch: 5 550	Loss: 18.3539 (18.3399) 	
+[1, 1, 1, 1]
+Train Epoch: 5 600	Loss: 18.2200 (18.3423) 	
+[1, 1, 1, 1]
+Train Epoch: 5 650	Loss: 18.4173 (18.3420) 	
+[1, 1, 1, 1]
+Train Epoch: 5 700	Loss: 18.4297 (18.3382) 	
+[1, 1, 1, 1]
+Train Epoch: 5 750	Loss: 18.3647 (18.3353) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 6 0	Loss: 18.4383 (18.4383) 	
+[1, 1, 1, 1]
+Train Epoch: 6 50	Loss: 18.4696 (18.3122) 	
+[1, 1, 1, 1]
+Train Epoch: 6 100	Loss: 18.1171 (18.2940) 	
+[1, 1, 1, 1]
+Train Epoch: 6 150	Loss: 18.2624 (18.2974) 	
+[1, 1, 1, 1]
+Train Epoch: 6 200	Loss: 18.3690 (18.3042) 	
+[1, 1, 1, 1]
+Train Epoch: 6 250	Loss: 17.9731 (18.3108) 	
+[1, 1, 1, 1]
+Train Epoch: 6 300	Loss: 18.4346 (18.3042) 	
+[1, 1, 1, 1]
+Train Epoch: 6 350	Loss: 18.4246 (18.3051) 	
+[1, 1, 1, 1]
+Train Epoch: 6 400	Loss: 18.3253 (18.3105) 	
+[1, 1, 1, 1]
+Train Epoch: 6 450	Loss: 18.2801 (18.3099) 	
+[1, 1, 1, 1]
+Train Epoch: 6 500	Loss: 18.8152 (18.3109) 	
+[1, 1, 1, 1]
+Train Epoch: 6 550	Loss: 18.6668 (18.3099) 	
+[1, 1, 1, 1]
+Train Epoch: 6 600	Loss: 18.0478 (18.3067) 	
+[1, 1, 1, 1]
+Train Epoch: 6 650	Loss: 18.0276 (18.3098) 	
+[1, 1, 1, 1]
+Train Epoch: 6 700	Loss: 18.2449 (18.3104) 	
+[1, 1, 1, 1]
+Train Epoch: 6 750	Loss: 18.5682 (18.3069) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 7 0	Loss: 18.4352 (18.4352) 	
+[1, 1, 1, 1]
+Train Epoch: 7 50	Loss: 18.5576 (18.2766) 	
+[1, 1, 1, 1]
+Train Epoch: 7 100	Loss: 18.2837 (18.2523) 	
+[1, 1, 1, 1]
+Train Epoch: 7 150	Loss: 18.1089 (18.2624) 	
+[1, 1, 1, 1]
+Train Epoch: 7 200	Loss: 17.9061 (18.2712) 	
+[1, 1, 1, 1]
+Train Epoch: 7 250	Loss: 18.5240 (18.2505) 	
+[1, 1, 1, 1]
+Train Epoch: 7 300	Loss: 18.3694 (18.2602) 	
+[1, 1, 1, 1]
+Train Epoch: 7 350	Loss: 18.3197 (18.2635) 	
+[1, 1, 1, 1]
+Train Epoch: 7 400	Loss: 18.2997 (18.2614) 	
+[1, 1, 1, 1]
+Train Epoch: 7 450	Loss: 18.0317 (18.2625) 	
+[1, 1, 1, 1]
+Train Epoch: 7 500	Loss: 18.0728 (18.2628) 	
+[1, 1, 1, 1]
+Train Epoch: 7 550	Loss: 18.6501 (18.2635) 	
+[1, 1, 1, 1]
+Train Epoch: 7 600	Loss: 17.8408 (18.2616) 	
+[1, 1, 1, 1]
+Train Epoch: 7 650	Loss: 18.3110 (18.2616) 	
+[1, 1, 1, 1]
+Train Epoch: 7 700	Loss: 18.4448 (18.2662) 	
+[1, 1, 1, 1]
+Train Epoch: 7 750	Loss: 18.4599 (18.2688) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 8 0	Loss: 18.1603 (18.1603) 	
+[1, 1, 1, 1]
+Train Epoch: 8 50	Loss: 18.1537 (18.2105) 	
+[1, 1, 1, 1]
+Train Epoch: 8 100	Loss: 18.1979 (18.2119) 	
+[1, 1, 1, 1]
+Train Epoch: 8 150	Loss: 18.0050 (18.2158) 	
+[1, 1, 1, 1]
+Train Epoch: 8 200	Loss: 18.2503 (18.2317) 	
+[1, 1, 1, 1]
+Train Epoch: 8 250	Loss: 18.4829 (18.2396) 	
+[1, 1, 1, 1]
+Train Epoch: 8 300	Loss: 18.2314 (18.2388) 	
+[1, 1, 1, 1]
+Train Epoch: 8 350	Loss: 18.5601 (18.2418) 	
+[1, 1, 1, 1]
+Train Epoch: 8 400	Loss: 18.1995 (18.2384) 	
+[1, 1, 1, 1]
+Train Epoch: 8 450	Loss: 18.0725 (18.2398) 	
+[1, 1, 1, 1]
+Train Epoch: 8 500	Loss: 18.1764 (18.2398) 	
+[1, 1, 1, 1]
+Train Epoch: 8 550	Loss: 18.0676 (18.2353) 	
+[1, 1, 1, 1]
+Train Epoch: 8 600	Loss: 18.4791 (18.2393) 	
+[1, 1, 1, 1]
+Train Epoch: 8 650	Loss: 18.6860 (18.2355) 	
+[1, 1, 1, 1]
+Train Epoch: 8 700	Loss: 17.9339 (18.2410) 	
+[1, 1, 1, 1]
+Train Epoch: 8 750	Loss: 18.0798 (18.2401) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 9 0	Loss: 18.5231 (18.5231) 	
+[1, 1, 1, 1]
+Train Epoch: 9 50	Loss: 18.2728 (18.1942) 	
+[1, 1, 1, 1]
+Train Epoch: 9 100	Loss: 18.3344 (18.2272) 	
+[1, 1, 1, 1]
+Train Epoch: 9 150	Loss: 17.7119 (18.2089) 	
+[1, 1, 1, 1]
+Train Epoch: 9 200	Loss: 18.0728 (18.1805) 	
+[1, 1, 1, 1]
+Train Epoch: 9 250	Loss: 18.5387 (18.1873) 	
+[1, 1, 1, 1]
+Train Epoch: 9 300	Loss: 18.4092 (18.1884) 	
+[1, 1, 1, 1]
+Train Epoch: 9 350	Loss: 18.2673 (18.1930) 	
+[1, 1, 1, 1]
+Train Epoch: 9 400	Loss: 18.1471 (18.1986) 	
+[1, 1, 1, 1]
+Train Epoch: 9 450	Loss: 18.1964 (18.1985) 	
+[1, 1, 1, 1]
+Train Epoch: 9 500	Loss: 18.0098 (18.2024) 	
+[1, 1, 1, 1]
+Train Epoch: 9 550	Loss: 18.6145 (18.2053) 	
+[1, 1, 1, 1]
+Train Epoch: 9 600	Loss: 18.0503 (18.2016) 	
+[1, 1, 1, 1]
+Train Epoch: 9 650	Loss: 18.2015 (18.2094) 	
+[1, 1, 1, 1]
+Train Epoch: 9 700	Loss: 18.6394 (18.2101) 	
+[1, 1, 1, 1]
+Train Epoch: 9 750	Loss: 17.9229 (18.2115) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 10 0	Loss: 17.9337 (17.9337) 	
+[1, 1, 1, 1]
+Train Epoch: 10 50	Loss: 18.0743 (18.2741) 	
+[1, 1, 1, 1]
+Train Epoch: 10 100	Loss: 18.3311 (18.2058) 	
+[1, 1, 1, 1]
+Train Epoch: 10 150	Loss: 17.8276 (18.2224) 	
+[1, 1, 1, 1]
+Train Epoch: 10 200	Loss: 18.7147 (18.2165) 	
+[1, 1, 1, 1]
+Train Epoch: 10 250	Loss: 18.7920 (18.2006) 	
+[1, 1, 1, 1]
+Train Epoch: 10 300	Loss: 18.0527 (18.2023) 	
+[1, 1, 1, 1]
+Train Epoch: 10 350	Loss: 17.8930 (18.1969) 	
+[1, 1, 1, 1]
+Train Epoch: 10 400	Loss: 18.6400 (18.1966) 	
+[1, 1, 1, 1]
+Train Epoch: 10 450	Loss: 18.2325 (18.1897) 	
+[1, 1, 1, 1]
+Train Epoch: 10 500	Loss: 17.7539 (18.1898) 	
+[1, 1, 1, 1]
+Train Epoch: 10 550	Loss: 18.0344 (18.1885) 	
+[1, 1, 1, 1]
+Train Epoch: 10 600	Loss: 18.1530 (18.1893) 	
+[1, 1, 1, 1]
+Train Epoch: 10 650	Loss: 18.3427 (18.1924) 	
+[1, 1, 1, 1]
+Train Epoch: 10 700	Loss: 18.1828 (18.1926) 	
+[1, 1, 1, 1]
+Train Epoch: 10 750	Loss: 18.1659 (18.1959) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 11 0	Loss: 17.9884 (17.9884) 	
+[1, 1, 1, 1]
+Train Epoch: 11 50	Loss: 18.9180 (18.1699) 	
+[1, 1, 1, 1]
+Train Epoch: 11 100	Loss: 17.8969 (18.1749) 	
+[1, 1, 1, 1]
+Train Epoch: 11 150	Loss: 18.2530 (18.1652) 	
+[1, 1, 1, 1]
+Train Epoch: 11 200	Loss: 18.3257 (18.1577) 	
+[1, 1, 1, 1]
+Train Epoch: 11 250	Loss: 18.3549 (18.1732) 	
+[1, 1, 1, 1]
+Train Epoch: 11 300	Loss: 17.8560 (18.1651) 	
+[1, 1, 1, 1]
+Train Epoch: 11 350	Loss: 17.9656 (18.1572) 	
+[1, 1, 1, 1]
+Train Epoch: 11 400	Loss: 17.9625 (18.1616) 	
+[1, 1, 1, 1]
+Train Epoch: 11 450	Loss: 18.6384 (18.1666) 	
+[1, 1, 1, 1]
+Train Epoch: 11 500	Loss: 18.4773 (18.1650) 	
+[1, 1, 1, 1]
+Train Epoch: 11 550	Loss: 18.6734 (18.1650) 	
+[1, 1, 1, 1]
+Train Epoch: 11 600	Loss: 18.2712 (18.1675) 	
+[1, 1, 1, 1]
+Train Epoch: 11 650	Loss: 18.2261 (18.1676) 	
+[1, 1, 1, 1]
+Train Epoch: 11 700	Loss: 18.0653 (18.1651) 	
+[1, 1, 1, 1]
+Train Epoch: 11 750	Loss: 18.5100 (18.1659) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 12 0	Loss: 18.7499 (18.7499) 	
+[1, 1, 1, 1]
+Train Epoch: 12 50	Loss: 17.9930 (18.1841) 	
+[1, 1, 1, 1]
+Train Epoch: 12 100	Loss: 17.5279 (18.1271) 	
+[1, 1, 1, 1]
+Train Epoch: 12 150	Loss: 18.7287 (18.1464) 	
+[1, 1, 1, 1]
+Train Epoch: 12 200	Loss: 18.3014 (18.1427) 	
+[1, 1, 1, 1]
+Train Epoch: 12 250	Loss: 18.1278 (18.1471) 	
+[1, 1, 1, 1]
+Train Epoch: 12 300	Loss: 18.2531 (18.1466) 	
+[1, 1, 1, 1]
+Train Epoch: 12 350	Loss: 18.2193 (18.1477) 	
+[1, 1, 1, 1]
+Train Epoch: 12 400	Loss: 17.7723 (18.1489) 	
+[1, 1, 1, 1]
+Train Epoch: 12 450	Loss: 17.9729 (18.1545) 	
+[1, 1, 1, 1]
+Train Epoch: 12 500	Loss: 17.9796 (18.1520) 	
+[1, 1, 1, 1]
+Train Epoch: 12 550	Loss: 18.3009 (18.1523) 	
+[1, 1, 1, 1]
+Train Epoch: 12 600	Loss: 17.8571 (18.1479) 	
+[1, 1, 1, 1]
+Train Epoch: 12 650	Loss: 18.3611 (18.1461) 	
+[1, 1, 1, 1]
+Train Epoch: 12 700	Loss: 18.0502 (18.1423) 	
+[1, 1, 1, 1]
+Train Epoch: 12 750	Loss: 18.4011 (18.1458) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 13 0	Loss: 18.2639 (18.2639) 	
+[1, 1, 1, 1]
+Train Epoch: 13 50	Loss: 18.4433 (18.1972) 	
+[1, 1, 1, 1]
+Train Epoch: 13 100	Loss: 17.9210 (18.1595) 	
+[1, 1, 1, 1]
+Train Epoch: 13 150	Loss: 17.4865 (18.1377) 	
+[1, 1, 1, 1]
+Train Epoch: 13 200	Loss: 17.7624 (18.1234) 	
+[1, 1, 1, 1]
+Train Epoch: 13 250	Loss: 17.8821 (18.1206) 	
+[1, 1, 1, 1]
+Train Epoch: 13 300	Loss: 18.2004 (18.1226) 	
+[1, 1, 1, 1]
+Train Epoch: 13 350	Loss: 17.9959 (18.1202) 	
+[1, 1, 1, 1]
+Train Epoch: 13 400	Loss: 18.4175 (18.1176) 	
+[1, 1, 1, 1]
+Train Epoch: 13 450	Loss: 18.2727 (18.1199) 	
+[1, 1, 1, 1]
+Train Epoch: 13 500	Loss: 18.2528 (18.1219) 	
+[1, 1, 1, 1]
+Train Epoch: 13 550	Loss: 17.9000 (18.1242) 	
+[1, 1, 1, 1]
+Train Epoch: 13 600	Loss: 17.7817 (18.1254) 	
+[1, 1, 1, 1]
+Train Epoch: 13 650	Loss: 18.2439 (18.1262) 	
+[1, 1, 1, 1]
+Train Epoch: 13 700	Loss: 18.5423 (18.1242) 	
+[1, 1, 1, 1]
+Train Epoch: 13 750	Loss: 18.1872 (18.1258) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 14 0	Loss: 17.8176 (17.8176) 	
+[1, 1, 1, 1]
+Train Epoch: 14 50	Loss: 17.7230 (18.1017) 	
+[1, 1, 1, 1]
+Train Epoch: 14 100	Loss: 17.5793 (18.1134) 	
+[1, 1, 1, 1]
+Train Epoch: 14 150	Loss: 17.5839 (18.1093) 	
+[1, 1, 1, 1]
+Train Epoch: 14 200	Loss: 18.6322 (18.1014) 	
+[1, 1, 1, 1]
+Train Epoch: 14 250	Loss: 18.3537 (18.0976) 	
+[1, 1, 1, 1]
+Train Epoch: 14 300	Loss: 18.3682 (18.0938) 	
+[1, 1, 1, 1]
+Train Epoch: 14 350	Loss: 18.1085 (18.0978) 	
+[1, 1, 1, 1]
+Train Epoch: 14 400	Loss: 17.9330 (18.0973) 	
+[1, 1, 1, 1]
+Train Epoch: 14 450	Loss: 17.9076 (18.0947) 	
+[1, 1, 1, 1]
+Train Epoch: 14 500	Loss: 18.0215 (18.0980) 	
+[1, 1, 1, 1]
+Train Epoch: 14 550	Loss: 18.0099 (18.1026) 	
+[1, 1, 1, 1]
+Train Epoch: 14 600	Loss: 18.4013 (18.1052) 	
+[1, 1, 1, 1]
+Train Epoch: 14 650	Loss: 18.3530 (18.1094) 	
+[1, 1, 1, 1]
+Train Epoch: 14 700	Loss: 17.8392 (18.1048) 	
+[1, 1, 1, 1]
+Train Epoch: 14 750	Loss: 18.5301 (18.1037) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 15 0	Loss: 18.2710 (18.2710) 	
+[1, 1, 1, 1]
+Train Epoch: 15 50	Loss: 17.4698 (18.0940) 	
+[1, 1, 1, 1]
+Train Epoch: 15 100	Loss: 17.8509 (18.0597) 	
+[1, 1, 1, 1]
+Train Epoch: 15 150	Loss: 18.0668 (18.1016) 	
+[1, 1, 1, 1]
+Train Epoch: 15 200	Loss: 17.9341 (18.0956) 	
+[1, 1, 1, 1]
+Train Epoch: 15 250	Loss: 17.9257 (18.0901) 	
+[1, 1, 1, 1]
+Train Epoch: 15 300	Loss: 17.7349 (18.0746) 	
+[1, 1, 1, 1]
+Train Epoch: 15 350	Loss: 17.8962 (18.0762) 	
+[1, 1, 1, 1]
+Train Epoch: 15 400	Loss: 18.4395 (18.0818) 	
+[1, 1, 1, 1]
+Train Epoch: 15 450	Loss: 18.0041 (18.0847) 	
+[1, 1, 1, 1]
+Train Epoch: 15 500	Loss: 18.3909 (18.0879) 	
+[1, 1, 1, 1]
+Train Epoch: 15 550	Loss: 17.4622 (18.0875) 	
+[1, 1, 1, 1]
+Train Epoch: 15 600	Loss: 18.1998 (18.0834) 	
+[1, 1, 1, 1]
+Train Epoch: 15 650	Loss: 17.8980 (18.0846) 	
+[1, 1, 1, 1]
+Train Epoch: 15 700	Loss: 18.0900 (18.0804) 	
+[1, 1, 1, 1]
+Train Epoch: 15 750	Loss: 17.8794 (18.0816) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 16 0	Loss: 18.5821 (18.5821) 	
+[1, 1, 1, 1]
+Train Epoch: 16 50	Loss: 18.3134 (18.0606) 	
+[1, 1, 1, 1]
+Train Epoch: 16 100	Loss: 17.7687 (18.0845) 	
+[1, 1, 1, 1]
+Train Epoch: 16 150	Loss: 18.0150 (18.0807) 	
+[1, 1, 1, 1]
+Train Epoch: 16 200	Loss: 17.8448 (18.0832) 	
+[1, 1, 1, 1]
+Train Epoch: 16 250	Loss: 17.8081 (18.0735) 	
+[1, 1, 1, 1]
+Train Epoch: 16 300	Loss: 18.1146 (18.0683) 	
+[1, 1, 1, 1]
+Train Epoch: 16 350	Loss: 18.2178 (18.0702) 	
+[1, 1, 1, 1]
+Train Epoch: 16 400	Loss: 17.9004 (18.0705) 	
+[1, 1, 1, 1]
+Train Epoch: 16 450	Loss: 18.6285 (18.0691) 	
+[1, 1, 1, 1]
+Train Epoch: 16 500	Loss: 18.3080 (18.0705) 	
+[1, 1, 1, 1]
+Train Epoch: 16 550	Loss: 17.7204 (18.0680) 	
+[1, 1, 1, 1]
+Train Epoch: 16 600	Loss: 17.9169 (18.0709) 	
+[1, 1, 1, 1]
+Train Epoch: 16 650	Loss: 17.9024 (18.0751) 	
+[1, 1, 1, 1]
+Train Epoch: 16 700	Loss: 17.9530 (18.0747) 	
+[1, 1, 1, 1]
+Train Epoch: 16 750	Loss: 17.7472 (18.0745) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 17 0	Loss: 17.7237 (17.7237) 	
+[1, 1, 1, 1]
+Train Epoch: 17 50	Loss: 17.9336 (18.0376) 	
+[1, 1, 1, 1]
+Train Epoch: 17 100	Loss: 17.8761 (18.0216) 	
+[1, 1, 1, 1]
+Train Epoch: 17 150	Loss: 18.5208 (18.0138) 	
+[1, 1, 1, 1]
+Train Epoch: 17 200	Loss: 17.9620 (18.0205) 	
+[1, 1, 1, 1]
+Train Epoch: 17 250	Loss: 17.7278 (18.0390) 	
+[1, 1, 1, 1]
+Train Epoch: 17 300	Loss: 18.0338 (18.0380) 	
+[1, 1, 1, 1]
+Train Epoch: 17 350	Loss: 18.6306 (18.0447) 	
+[1, 1, 1, 1]
+Train Epoch: 17 400	Loss: 18.1197 (18.0429) 	
+[1, 1, 1, 1]
+Train Epoch: 17 450	Loss: 18.2853 (18.0446) 	
+[1, 1, 1, 1]
+Train Epoch: 17 500	Loss: 18.1882 (18.0439) 	
+[1, 1, 1, 1]
+Train Epoch: 17 550	Loss: 17.7171 (18.0428) 	
+[1, 1, 1, 1]
+Train Epoch: 17 600	Loss: 18.3720 (18.0430) 	
+[1, 1, 1, 1]
+Train Epoch: 17 650	Loss: 17.8848 (18.0453) 	
+[1, 1, 1, 1]
+Train Epoch: 17 700	Loss: 17.9748 (18.0509) 	
+[1, 1, 1, 1]
+Train Epoch: 17 750	Loss: 18.1050 (18.0527) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 18 0	Loss: 18.1487 (18.1487) 	
+[1, 1, 1, 1]
+Train Epoch: 18 50	Loss: 18.1721 (18.0598) 	
+[1, 1, 1, 1]
+Train Epoch: 18 100	Loss: 18.3559 (18.0725) 	
+[1, 1, 1, 1]
+Train Epoch: 18 150	Loss: 17.5858 (18.0427) 	
+[1, 1, 1, 1]
+Train Epoch: 18 200	Loss: 18.1203 (18.0565) 	
+[1, 1, 1, 1]
+Train Epoch: 18 250	Loss: 17.6314 (18.0554) 	
+[1, 1, 1, 1]
+Train Epoch: 18 300	Loss: 17.7405 (18.0422) 	
+[1, 1, 1, 1]
+Train Epoch: 18 350	Loss: 17.9139 (18.0287) 	
+[1, 1, 1, 1]
+Train Epoch: 18 400	Loss: 18.3569 (18.0276) 	
+[1, 1, 1, 1]
+Train Epoch: 18 450	Loss: 17.7065 (18.0337) 	
+[1, 1, 1, 1]
+Train Epoch: 18 500	Loss: 17.9612 (18.0382) 	
+[1, 1, 1, 1]
+Train Epoch: 18 550	Loss: 17.7825 (18.0347) 	
+[1, 1, 1, 1]
+Train Epoch: 18 600	Loss: 17.9515 (18.0377) 	
+[1, 1, 1, 1]
+Train Epoch: 18 650	Loss: 17.8058 (18.0362) 	
+[1, 1, 1, 1]
+Train Epoch: 18 700	Loss: 17.7283 (18.0395) 	
+[1, 1, 1, 1]
+Train Epoch: 18 750	Loss: 18.6366 (18.0385) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 19 0	Loss: 18.1579 (18.1579) 	
+[1, 1, 1, 1]
+Train Epoch: 19 50	Loss: 17.6711 (17.9843) 	
+[1, 1, 1, 1]
+Train Epoch: 19 100	Loss: 18.2849 (18.0173) 	
+[1, 1, 1, 1]
+Train Epoch: 19 150	Loss: 17.5187 (18.0034) 	
+[1, 1, 1, 1]
+Train Epoch: 19 200	Loss: 17.5071 (18.0111) 	
+[1, 1, 1, 1]
+Train Epoch: 19 250	Loss: 17.9743 (18.0139) 	
+[1, 1, 1, 1]
+Train Epoch: 19 300	Loss: 18.3962 (18.0048) 	
+[1, 1, 1, 1]
+Train Epoch: 19 350	Loss: 17.9781 (18.0113) 	
+[1, 1, 1, 1]
+Train Epoch: 19 400	Loss: 17.6963 (18.0098) 	
+[1, 1, 1, 1]
+Train Epoch: 19 450	Loss: 17.9864 (18.0159) 	
+[1, 1, 1, 1]
+Train Epoch: 19 500	Loss: 17.7319 (18.0201) 	
+[1, 1, 1, 1]
+Train Epoch: 19 550	Loss: 17.9894 (18.0179) 	
+[1, 1, 1, 1]
+Train Epoch: 19 600	Loss: 17.7788 (18.0229) 	
+[1, 1, 1, 1]
+Train Epoch: 19 650	Loss: 17.9039 (18.0229) 	
+[1, 1, 1, 1]
+Train Epoch: 19 700	Loss: 17.4920 (18.0253) 	
+[1, 1, 1, 1]
+Train Epoch: 19 750	Loss: 17.6976 (18.0270) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 20 0	Loss: 18.6563 (18.6563) 	
+[1, 1, 1, 1]
+Train Epoch: 20 50	Loss: 18.2631 (18.0693) 	
+[1, 1, 1, 1]
+Train Epoch: 20 100	Loss: 18.0871 (18.0391) 	
+[1, 1, 1, 1]
+Train Epoch: 20 150	Loss: 17.8932 (18.0272) 	
+[1, 1, 1, 1]
+Train Epoch: 20 200	Loss: 18.0051 (18.0112) 	
+[1, 1, 1, 1]
+Train Epoch: 20 250	Loss: 18.0822 (18.0236) 	
+[1, 1, 1, 1]
+Train Epoch: 20 300	Loss: 18.4433 (18.0261) 	
+[1, 1, 1, 1]
+Train Epoch: 20 350	Loss: 17.9253 (18.0217) 	
+[1, 1, 1, 1]
+Train Epoch: 20 400	Loss: 17.8376 (18.0246) 	
+[1, 1, 1, 1]
+Train Epoch: 20 450	Loss: 18.3756 (18.0256) 	
+[1, 1, 1, 1]
+Train Epoch: 20 500	Loss: 17.7177 (18.0259) 	
+[1, 1, 1, 1]
+Train Epoch: 20 550	Loss: 17.8414 (18.0230) 	
+[1, 1, 1, 1]
+Train Epoch: 20 600	Loss: 18.0922 (18.0203) 	
+[1, 1, 1, 1]
+Train Epoch: 20 650	Loss: 17.7821 (18.0188) 	
+[1, 1, 1, 1]
+Train Epoch: 20 700	Loss: 17.5566 (18.0180) 	
+[1, 1, 1, 1]
+Train Epoch: 20 750	Loss: 17.7962 (18.0165) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 21 0	Loss: 18.2318 (18.2318) 	
+[1, 1, 1, 1]
+Train Epoch: 21 50	Loss: 18.0126 (18.0372) 	
+[1, 1, 1, 1]
+Train Epoch: 21 100	Loss: 17.8696 (17.9802) 	
+[1, 1, 1, 1]
+Train Epoch: 21 150	Loss: 17.7719 (17.9831) 	
+[1, 1, 1, 1]
+Train Epoch: 21 200	Loss: 17.7213 (17.9711) 	
+[1, 1, 1, 1]
+Train Epoch: 21 250	Loss: 18.1493 (17.9690) 	
+[1, 1, 1, 1]
+Train Epoch: 21 300	Loss: 17.9028 (17.9740) 	
+[1, 1, 1, 1]
+Train Epoch: 21 350	Loss: 17.8620 (17.9766) 	
+[1, 1, 1, 1]
+Train Epoch: 21 400	Loss: 18.5576 (17.9803) 	
+[1, 1, 1, 1]
+Train Epoch: 21 450	Loss: 17.8283 (17.9842) 	
+[1, 1, 1, 1]
+Train Epoch: 21 500	Loss: 18.1334 (17.9808) 	
+[1, 1, 1, 1]
+Train Epoch: 21 550	Loss: 17.7825 (17.9806) 	
+[1, 1, 1, 1]
+Train Epoch: 21 600	Loss: 18.2475 (17.9904) 	
+[1, 1, 1, 1]
+Train Epoch: 21 650	Loss: 17.9670 (17.9945) 	
+[1, 1, 1, 1]
+Train Epoch: 21 700	Loss: 17.9569 (17.9918) 	
+[1, 1, 1, 1]
+Train Epoch: 21 750	Loss: 18.2630 (17.9908) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 22 0	Loss: 17.7827 (17.7827) 	
+[1, 1, 1, 1]
+Train Epoch: 22 50	Loss: 18.0760 (17.9156) 	
+[1, 1, 1, 1]
+Train Epoch: 22 100	Loss: 18.4133 (17.9452) 	
+[1, 1, 1, 1]
+Train Epoch: 22 150	Loss: 17.6973 (17.9393) 	
+[1, 1, 1, 1]
+Train Epoch: 22 200	Loss: 17.6658 (17.9462) 	
+[1, 1, 1, 1]
+Train Epoch: 22 250	Loss: 17.8395 (17.9517) 	
+[1, 1, 1, 1]
+Train Epoch: 22 300	Loss: 17.7275 (17.9527) 	
+[1, 1, 1, 1]
+Train Epoch: 22 350	Loss: 18.2899 (17.9542) 	
+[1, 1, 1, 1]
+Train Epoch: 22 400	Loss: 18.0754 (17.9532) 	
+[1, 1, 1, 1]
+Train Epoch: 22 450	Loss: 18.1058 (17.9574) 	
+[1, 1, 1, 1]
+Train Epoch: 22 500	Loss: 17.5207 (17.9560) 	
+[1, 1, 1, 1]
+Train Epoch: 22 550	Loss: 18.1096 (17.9602) 	
+[1, 1, 1, 1]
+Train Epoch: 22 600	Loss: 18.1314 (17.9657) 	
+[1, 1, 1, 1]
+Train Epoch: 22 650	Loss: 17.7489 (17.9728) 	
+[1, 1, 1, 1]
+Train Epoch: 22 700	Loss: 18.1357 (17.9757) 	
+[1, 1, 1, 1]
+Train Epoch: 22 750	Loss: 18.0949 (17.9801) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 23 0	Loss: 17.8976 (17.8976) 	
+[1, 1, 1, 1]
+Train Epoch: 23 50	Loss: 17.6140 (17.8849) 	
+[1, 1, 1, 1]
+Train Epoch: 23 100	Loss: 18.1382 (17.9345) 	
+[1, 1, 1, 1]
+Train Epoch: 23 150	Loss: 17.6632 (17.9361) 	
+[1, 1, 1, 1]
+Train Epoch: 23 200	Loss: 18.5478 (17.9379) 	
+[1, 1, 1, 1]
+Train Epoch: 23 250	Loss: 17.8414 (17.9538) 	
+[1, 1, 1, 1]
+Train Epoch: 23 300	Loss: 17.6187 (17.9571) 	
+[1, 1, 1, 1]
+Train Epoch: 23 350	Loss: 17.4028 (17.9478) 	
+[1, 1, 1, 1]
+Train Epoch: 23 400	Loss: 18.2568 (17.9472) 	
+[1, 1, 1, 1]
+Train Epoch: 23 450	Loss: 17.7576 (17.9488) 	
+[1, 1, 1, 1]
+Train Epoch: 23 500	Loss: 18.0172 (17.9549) 	
+[1, 1, 1, 1]
+Train Epoch: 23 550	Loss: 18.0588 (17.9565) 	
+[1, 1, 1, 1]
+Train Epoch: 23 600	Loss: 18.3557 (17.9637) 	
+[1, 1, 1, 1]
+Train Epoch: 23 650	Loss: 17.9298 (17.9658) 	
+[1, 1, 1, 1]
+Train Epoch: 23 700	Loss: 17.9040 (17.9649) 	
+[1, 1, 1, 1]
+Train Epoch: 23 750	Loss: 18.0629 (17.9640) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 24 0	Loss: 18.1505 (18.1505) 	
+[1, 1, 1, 1]
+Train Epoch: 24 50	Loss: 17.8305 (17.9491) 	
+[1, 1, 1, 1]
+Train Epoch: 24 100	Loss: 17.5568 (17.9395) 	
+[1, 1, 1, 1]
+Train Epoch: 24 150	Loss: 18.2068 (17.9403) 	
+[1, 1, 1, 1]
+Train Epoch: 24 200	Loss: 18.0107 (17.9332) 	
+[1, 1, 1, 1]
+Train Epoch: 24 250	Loss: 18.2607 (17.9387) 	
+[1, 1, 1, 1]
+Train Epoch: 24 300	Loss: 17.9148 (17.9352) 	
+[1, 1, 1, 1]
+Train Epoch: 24 350	Loss: 18.1747 (17.9445) 	
+[1, 1, 1, 1]
+Train Epoch: 24 400	Loss: 18.1693 (17.9362) 	
+[1, 1, 1, 1]
+Train Epoch: 24 450	Loss: 17.6289 (17.9340) 	
+[1, 1, 1, 1]
+Train Epoch: 24 500	Loss: 17.9957 (17.9387) 	
+[1, 1, 1, 1]
+Train Epoch: 24 550	Loss: 17.9989 (17.9432) 	
+[1, 1, 1, 1]
+Train Epoch: 24 600	Loss: 18.5043 (17.9452) 	
+[1, 1, 1, 1]
+Train Epoch: 24 650	Loss: 18.1474 (17.9518) 	
+[1, 1, 1, 1]
+Train Epoch: 24 700	Loss: 18.0876 (17.9564) 	
+[1, 1, 1, 1]
+Train Epoch: 24 750	Loss: 17.8750 (17.9540) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 25 0	Loss: 17.8804 (17.8804) 	
+[1, 1, 1, 1]
+Train Epoch: 25 50	Loss: 17.7504 (17.9269) 	
+[1, 1, 1, 1]
+Train Epoch: 25 100	Loss: 18.1205 (17.9148) 	
+[1, 1, 1, 1]
+Train Epoch: 25 150	Loss: 17.6949 (17.9208) 	
+[1, 1, 1, 1]
+Train Epoch: 25 200	Loss: 17.7029 (17.9312) 	
+[1, 1, 1, 1]
+Train Epoch: 25 250	Loss: 17.9454 (17.9435) 	
+[1, 1, 1, 1]
+Train Epoch: 25 300	Loss: 17.6426 (17.9401) 	
+[1, 1, 1, 1]
+Train Epoch: 25 350	Loss: 17.6639 (17.9380) 	
+[1, 1, 1, 1]
+Train Epoch: 25 400	Loss: 18.6334 (17.9421) 	
+[1, 1, 1, 1]
+Train Epoch: 25 450	Loss: 17.7682 (17.9388) 	
+[1, 1, 1, 1]
+Train Epoch: 25 500	Loss: 17.6398 (17.9394) 	
+[1, 1, 1, 1]
+Train Epoch: 25 550	Loss: 18.1634 (17.9393) 	
+[1, 1, 1, 1]
+Train Epoch: 25 600	Loss: 17.9555 (17.9362) 	
+[1, 1, 1, 1]
+Train Epoch: 25 650	Loss: 18.0323 (17.9381) 	
+[1, 1, 1, 1]
+Train Epoch: 25 700	Loss: 17.9572 (17.9409) 	
+[1, 1, 1, 1]
+Train Epoch: 25 750	Loss: 17.8445 (17.9400) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 26 0	Loss: 17.7539 (17.7539) 	
+[1, 1, 1, 1]
+Train Epoch: 26 50	Loss: 18.4097 (17.9456) 	
+[1, 1, 1, 1]
+Train Epoch: 26 100	Loss: 17.7563 (17.9621) 	
+[1, 1, 1, 1]
+Train Epoch: 26 150	Loss: 18.1748 (17.9564) 	
+[1, 1, 1, 1]
+Train Epoch: 26 200	Loss: 17.8289 (17.9321) 	
+[1, 1, 1, 1]
+Train Epoch: 26 250	Loss: 18.4553 (17.9213) 	
+[1, 1, 1, 1]
+Train Epoch: 26 300	Loss: 18.2626 (17.9258) 	
+[1, 1, 1, 1]
+Train Epoch: 26 350	Loss: 18.3817 (17.9257) 	
+[1, 1, 1, 1]
+Train Epoch: 26 400	Loss: 17.9107 (17.9266) 	
+[1, 1, 1, 1]
+Train Epoch: 26 450	Loss: 17.8266 (17.9279) 	
+[1, 1, 1, 1]
+Train Epoch: 26 500	Loss: 17.2077 (17.9307) 	
+[1, 1, 1, 1]
+Train Epoch: 26 550	Loss: 18.0643 (17.9360) 	
+[1, 1, 1, 1]
+Train Epoch: 26 600	Loss: 17.8809 (17.9353) 	
+[1, 1, 1, 1]
+Train Epoch: 26 650	Loss: 18.2002 (17.9347) 	
+[1, 1, 1, 1]
+Train Epoch: 26 700	Loss: 17.8330 (17.9317) 	
+[1, 1, 1, 1]
+Train Epoch: 26 750	Loss: 17.8601 (17.9320) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 27 0	Loss: 17.6053 (17.6053) 	
+[1, 1, 1, 1]
+Train Epoch: 27 50	Loss: 17.6732 (17.9127) 	
+[1, 1, 1, 1]
+Train Epoch: 27 100	Loss: 18.1105 (17.9129) 	
+[1, 1, 1, 1]
+Train Epoch: 27 150	Loss: 17.9753 (17.9073) 	
+[1, 1, 1, 1]
+Train Epoch: 27 200	Loss: 17.9311 (17.9003) 	
+[1, 1, 1, 1]
+Train Epoch: 27 250	Loss: 18.0650 (17.9111) 	
+[1, 1, 1, 1]
+Train Epoch: 27 300	Loss: 17.8705 (17.9079) 	
+[1, 1, 1, 1]
+Train Epoch: 27 350	Loss: 18.2203 (17.9056) 	
+[1, 1, 1, 1]
+Train Epoch: 27 400	Loss: 17.9207 (17.9091) 	
+[1, 1, 1, 1]
+Train Epoch: 27 450	Loss: 18.0116 (17.9074) 	
+[1, 1, 1, 1]
+Train Epoch: 27 500	Loss: 17.8166 (17.9119) 	
+[1, 1, 1, 1]
+Train Epoch: 27 550	Loss: 18.2354 (17.9219) 	
+[1, 1, 1, 1]
+Train Epoch: 27 600	Loss: 18.3767 (17.9204) 	
+[1, 1, 1, 1]
+Train Epoch: 27 650	Loss: 17.7317 (17.9181) 	
+[1, 1, 1, 1]
+Train Epoch: 27 700	Loss: 17.7990 (17.9195) 	
+[1, 1, 1, 1]
+Train Epoch: 27 750	Loss: 17.6079 (17.9204) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 28 0	Loss: 17.7554 (17.7554) 	
+[1, 1, 1, 1]
+Train Epoch: 28 50	Loss: 17.7253 (17.8229) 	
+[1, 1, 1, 1]
+Train Epoch: 28 100	Loss: 18.2062 (17.8606) 	
+[1, 1, 1, 1]
+Train Epoch: 28 150	Loss: 18.2599 (17.8809) 	
+[1, 1, 1, 1]
+Train Epoch: 28 200	Loss: 17.9302 (17.8915) 	
+[1, 1, 1, 1]
+Train Epoch: 28 250	Loss: 17.8300 (17.8992) 	
+[1, 1, 1, 1]
+Train Epoch: 28 300	Loss: 17.5197 (17.8940) 	
+[1, 1, 1, 1]
+Train Epoch: 28 350	Loss: 18.3483 (17.9085) 	
+[1, 1, 1, 1]
+Train Epoch: 28 400	Loss: 17.8589 (17.9059) 	
+[1, 1, 1, 1]
+Train Epoch: 28 450	Loss: 17.8842 (17.9027) 	
+[1, 1, 1, 1]
+Train Epoch: 28 500	Loss: 17.5793 (17.8993) 	
+[1, 1, 1, 1]
+Train Epoch: 28 550	Loss: 18.4803 (17.9035) 	
+[1, 1, 1, 1]
+Train Epoch: 28 600	Loss: 18.0864 (17.9073) 	
+[1, 1, 1, 1]
+Train Epoch: 28 650	Loss: 18.3627 (17.9082) 	
+[1, 1, 1, 1]
+Train Epoch: 28 700	Loss: 18.5381 (17.9039) 	
+[1, 1, 1, 1]
+Train Epoch: 28 750	Loss: 17.6093 (17.9036) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 29 0	Loss: 17.5655 (17.5655) 	
+[1, 1, 1, 1]
+Train Epoch: 29 50	Loss: 18.4842 (17.9092) 	
+[1, 1, 1, 1]
+Train Epoch: 29 100	Loss: 18.2270 (17.9089) 	
+[1, 1, 1, 1]
+Train Epoch: 29 150	Loss: 17.7029 (17.9181) 	
+[1, 1, 1, 1]
+Train Epoch: 29 200	Loss: 17.6559 (17.8943) 	
+[1, 1, 1, 1]
+Train Epoch: 29 250	Loss: 17.8398 (17.8834) 	
+[1, 1, 1, 1]
+Train Epoch: 29 300	Loss: 17.8564 (17.8890) 	
+[1, 1, 1, 1]
+Train Epoch: 29 350	Loss: 18.0429 (17.8809) 	
+[1, 1, 1, 1]
+Train Epoch: 29 400	Loss: 17.5973 (17.8819) 	
+[1, 1, 1, 1]
+Train Epoch: 29 450	Loss: 17.9055 (17.8786) 	
+[1, 1, 1, 1]
+Train Epoch: 29 500	Loss: 17.6856 (17.8832) 	
+[1, 1, 1, 1]
+Train Epoch: 29 550	Loss: 17.9313 (17.8830) 	
+[1, 1, 1, 1]
+Train Epoch: 29 600	Loss: 17.8457 (17.8875) 	
+[1, 1, 1, 1]
+Train Epoch: 29 650	Loss: 18.1935 (17.8924) 	
+[1, 1, 1, 1]
+Train Epoch: 29 700	Loss: 18.3536 (17.8964) 	
+[1, 1, 1, 1]
+Train Epoch: 29 750	Loss: 17.8469 (17.8973) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 30 0	Loss: 17.6271 (17.6271) 	
+[1, 1, 1, 1]
+Train Epoch: 30 50	Loss: 17.6185 (17.8554) 	
+[1, 1, 1, 1]
+Train Epoch: 30 100	Loss: 17.8595 (17.8765) 	
+[1, 1, 1, 1]
+Train Epoch: 30 150	Loss: 17.4080 (17.8769) 	
+[1, 1, 1, 1]
+Train Epoch: 30 200	Loss: 17.9368 (17.8820) 	
+[1, 1, 1, 1]
+Train Epoch: 30 250	Loss: 17.2425 (17.8569) 	
+[1, 1, 1, 1]
+Train Epoch: 30 300	Loss: 18.0386 (17.8594) 	
+[1, 1, 1, 1]
+Train Epoch: 30 350	Loss: 17.9287 (17.8684) 	
+[1, 1, 1, 1]
+Train Epoch: 30 400	Loss: 18.3261 (17.8748) 	
+[1, 1, 1, 1]
+Train Epoch: 30 450	Loss: 18.4872 (17.8783) 	
+[1, 1, 1, 1]
+Train Epoch: 30 500	Loss: 17.7178 (17.8791) 	
+[1, 1, 1, 1]
+Train Epoch: 30 550	Loss: 18.0438 (17.8834) 	
+[1, 1, 1, 1]
+Train Epoch: 30 600	Loss: 17.9218 (17.8835) 	
+[1, 1, 1, 1]
+Train Epoch: 30 650	Loss: 17.8600 (17.8854) 	
+[1, 1, 1, 1]
+Train Epoch: 30 700	Loss: 17.8920 (17.8872) 	
+[1, 1, 1, 1]
+Train Epoch: 30 750	Loss: 18.5250 (17.8879) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 31 0	Loss: 18.0755 (18.0755) 	
+[1, 1, 1, 1]
+Train Epoch: 31 50	Loss: 17.4334 (17.8290) 	
+[1, 1, 1, 1]
+Train Epoch: 31 100	Loss: 17.9528 (17.8421) 	
+[1, 1, 1, 1]
+Train Epoch: 31 150	Loss: 17.8078 (17.8644) 	
+[1, 1, 1, 1]
+Train Epoch: 31 200	Loss: 17.9377 (17.8628) 	
+[1, 1, 1, 1]
+Train Epoch: 31 250	Loss: 17.7236 (17.8657) 	
+[1, 1, 1, 1]
+Train Epoch: 31 300	Loss: 17.4852 (17.8626) 	
+[1, 1, 1, 1]
+Train Epoch: 31 350	Loss: 17.9629 (17.8626) 	
+[1, 1, 1, 1]
+Train Epoch: 31 400	Loss: 17.7266 (17.8643) 	
+[1, 1, 1, 1]
+Train Epoch: 31 450	Loss: 18.0851 (17.8628) 	
+[1, 1, 1, 1]
+Train Epoch: 31 500	Loss: 18.2192 (17.8620) 	
+[1, 1, 1, 1]
+Train Epoch: 31 550	Loss: 18.0252 (17.8616) 	
+[1, 1, 1, 1]
+Train Epoch: 31 600	Loss: 17.4520 (17.8626) 	
+[1, 1, 1, 1]
+Train Epoch: 31 650	Loss: 18.1265 (17.8639) 	
+[1, 1, 1, 1]
+Train Epoch: 31 700	Loss: 17.7742 (17.8702) 	
+[1, 1, 1, 1]
+Train Epoch: 31 750	Loss: 17.9970 (17.8670) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 32 0	Loss: 17.7303 (17.7303) 	
+[1, 1, 1, 1]
+Train Epoch: 32 50	Loss: 17.7788 (17.8357) 	
+[1, 1, 1, 1]
+Train Epoch: 32 100	Loss: 17.6191 (17.8218) 	
+[1, 1, 1, 1]
+Train Epoch: 32 150	Loss: 17.8788 (17.8414) 	
+[1, 1, 1, 1]
+Train Epoch: 32 200	Loss: 17.5392 (17.8214) 	
+[1, 1, 1, 1]
+Train Epoch: 32 250	Loss: 17.8186 (17.8246) 	
+[1, 1, 1, 1]
+Train Epoch: 32 300	Loss: 18.0166 (17.8291) 	
+[1, 1, 1, 1]
+Train Epoch: 32 350	Loss: 17.4652 (17.8357) 	
+[1, 1, 1, 1]
+Train Epoch: 32 400	Loss: 17.8188 (17.8390) 	
+[1, 1, 1, 1]
+Train Epoch: 32 450	Loss: 17.9208 (17.8492) 	
+[1, 1, 1, 1]
+Train Epoch: 32 500	Loss: 17.9390 (17.8480) 	
+[1, 1, 1, 1]
+Train Epoch: 32 550	Loss: 17.9000 (17.8510) 	
+[1, 1, 1, 1]
+Train Epoch: 32 600	Loss: 18.3302 (17.8580) 	
+[1, 1, 1, 1]
+Train Epoch: 32 650	Loss: 18.3474 (17.8611) 	
+[1, 1, 1, 1]
+Train Epoch: 32 700	Loss: 17.3567 (17.8602) 	
+[1, 1, 1, 1]
+Train Epoch: 32 750	Loss: 18.1268 (17.8615) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 33 0	Loss: 18.2711 (18.2711) 	
+[1, 1, 1, 1]
+Train Epoch: 33 50	Loss: 17.7469 (17.7779) 	
+[1, 1, 1, 1]
+Train Epoch: 33 100	Loss: 18.0655 (17.8040) 	
+[1, 1, 1, 1]
+Train Epoch: 33 150	Loss: 18.1407 (17.8116) 	
+[1, 1, 1, 1]
+Train Epoch: 33 200	Loss: 17.2477 (17.8235) 	
+[1, 1, 1, 1]
+Train Epoch: 33 250	Loss: 18.2719 (17.8258) 	
+[1, 1, 1, 1]
+Train Epoch: 33 300	Loss: 18.0518 (17.8161) 	
+[1, 1, 1, 1]
+Train Epoch: 33 350	Loss: 18.2113 (17.8123) 	
+[1, 1, 1, 1]
+Train Epoch: 33 400	Loss: 17.9054 (17.8196) 	
+[1, 1, 1, 1]
+Train Epoch: 33 450	Loss: 18.0590 (17.8232) 	
+[1, 1, 1, 1]
+Train Epoch: 33 500	Loss: 17.8127 (17.8318) 	
+[1, 1, 1, 1]
+Train Epoch: 33 550	Loss: 17.2855 (17.8327) 	
+[1, 1, 1, 1]
+Train Epoch: 33 600	Loss: 18.2682 (17.8367) 	
+[1, 1, 1, 1]
+Train Epoch: 33 650	Loss: 18.1209 (17.8399) 	
+[1, 1, 1, 1]
+Train Epoch: 33 700	Loss: 17.7487 (17.8358) 	
+[1, 1, 1, 1]
+Train Epoch: 33 750	Loss: 17.7372 (17.8429) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 34 0	Loss: 17.9263 (17.9263) 	
+[1, 1, 1, 1]
+Train Epoch: 34 50	Loss: 17.6802 (17.8662) 	
+[1, 1, 1, 1]
+Train Epoch: 34 100	Loss: 17.9624 (17.8084) 	
+[1, 1, 1, 1]
+Train Epoch: 34 150	Loss: 17.8048 (17.8201) 	
+[1, 1, 1, 1]
+Train Epoch: 34 200	Loss: 18.0638 (17.8145) 	
+[1, 1, 1, 1]
+Train Epoch: 34 250	Loss: 17.4383 (17.8182) 	
+[1, 1, 1, 1]
+Train Epoch: 34 300	Loss: 17.7541 (17.8184) 	
+[1, 1, 1, 1]
+Train Epoch: 34 350	Loss: 17.6065 (17.8184) 	
+[1, 1, 1, 1]
+Train Epoch: 34 400	Loss: 18.4004 (17.8205) 	
+[1, 1, 1, 1]
+Train Epoch: 34 450	Loss: 17.9683 (17.8190) 	
+[1, 1, 1, 1]
+Train Epoch: 34 500	Loss: 17.6125 (17.8188) 	
+[1, 1, 1, 1]
+Train Epoch: 34 550	Loss: 17.8229 (17.8178) 	
+[1, 1, 1, 1]
+Train Epoch: 34 600	Loss: 17.6432 (17.8246) 	
+[1, 1, 1, 1]
+Train Epoch: 34 650	Loss: 17.6019 (17.8271) 	
+[1, 1, 1, 1]
+Train Epoch: 34 700	Loss: 17.7838 (17.8288) 	
+[1, 1, 1, 1]
+Train Epoch: 34 750	Loss: 18.0751 (17.8315) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 35 0	Loss: 17.6153 (17.6153) 	
+[1, 1, 1, 1]
+Train Epoch: 35 50	Loss: 17.5131 (17.7529) 	
+[1, 1, 1, 1]
+Train Epoch: 35 100	Loss: 18.4658 (17.7968) 	
+[1, 1, 1, 1]
+Train Epoch: 35 150	Loss: 17.4232 (17.8036) 	
+[1, 1, 1, 1]
+Train Epoch: 35 200	Loss: 17.6883 (17.8046) 	
+[1, 1, 1, 1]
+Train Epoch: 35 250	Loss: 17.2770 (17.7988) 	
+[1, 1, 1, 1]
+Train Epoch: 35 300	Loss: 18.3085 (17.7994) 	
+[1, 1, 1, 1]
+Train Epoch: 35 350	Loss: 17.6463 (17.8110) 	
+[1, 1, 1, 1]
+Train Epoch: 35 400	Loss: 17.6169 (17.8133) 	
+[1, 1, 1, 1]
+Train Epoch: 35 450	Loss: 17.9074 (17.8139) 	
+[1, 1, 1, 1]
+Train Epoch: 35 500	Loss: 18.3403 (17.8179) 	
+[1, 1, 1, 1]
+Train Epoch: 35 550	Loss: 17.8331 (17.8187) 	
+[1, 1, 1, 1]
+Train Epoch: 35 600	Loss: 18.1535 (17.8214) 	
+[1, 1, 1, 1]
+Train Epoch: 35 650	Loss: 17.6550 (17.8243) 	
+[1, 1, 1, 1]
+Train Epoch: 35 700	Loss: 18.1072 (17.8274) 	
+[1, 1, 1, 1]
+Train Epoch: 35 750	Loss: 17.9061 (17.8282) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 36 0	Loss: 17.2697 (17.2697) 	
+[1, 1, 1, 1]
+Train Epoch: 36 50	Loss: 18.0994 (17.8194) 	
+[1, 1, 1, 1]
+Train Epoch: 36 100	Loss: 17.6959 (17.7935) 	
+[1, 1, 1, 1]
+Train Epoch: 36 150	Loss: 17.8455 (17.7982) 	
+[1, 1, 1, 1]
+Train Epoch: 36 200	Loss: 17.3781 (17.8108) 	
+[1, 1, 1, 1]
+Train Epoch: 36 250	Loss: 17.6745 (17.8120) 	
+[1, 1, 1, 1]
+Train Epoch: 36 300	Loss: 17.3346 (17.8198) 	
+[1, 1, 1, 1]
+Train Epoch: 36 350	Loss: 17.5655 (17.8037) 	
+[1, 1, 1, 1]
+Train Epoch: 36 400	Loss: 17.8836 (17.8013) 	
+[1, 1, 1, 1]
+Train Epoch: 36 450	Loss: 17.7969 (17.7996) 	
+[1, 1, 1, 1]
+Train Epoch: 36 500	Loss: 18.5543 (17.8054) 	
+[1, 1, 1, 1]
+Train Epoch: 36 550	Loss: 17.9265 (17.8072) 	
+[1, 1, 1, 1]
+Train Epoch: 36 600	Loss: 17.4947 (17.8074) 	
+[1, 1, 1, 1]
+Train Epoch: 36 650	Loss: 17.8310 (17.8066) 	
+[1, 1, 1, 1]
+Train Epoch: 36 700	Loss: 17.2410 (17.8065) 	
+[1, 1, 1, 1]
+Train Epoch: 36 750	Loss: 18.0784 (17.8100) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 37 0	Loss: 17.8507 (17.8507) 	
+[1, 1, 1, 1]
+Train Epoch: 37 50	Loss: 18.2736 (17.8037) 	
+[1, 1, 1, 1]
+Train Epoch: 37 100	Loss: 17.6077 (17.7835) 	
+[1, 1, 1, 1]
+Train Epoch: 37 150	Loss: 17.6804 (17.8022) 	
+[1, 1, 1, 1]
+Train Epoch: 37 200	Loss: 18.1654 (17.8116) 	
+[1, 1, 1, 1]
+Train Epoch: 37 250	Loss: 17.6055 (17.8021) 	
+[1, 1, 1, 1]
+Train Epoch: 37 300	Loss: 17.8546 (17.8024) 	
+[1, 1, 1, 1]
+Train Epoch: 37 350	Loss: 17.5416 (17.8016) 	
+[1, 1, 1, 1]
+Train Epoch: 37 400	Loss: 17.7492 (17.8068) 	
+[1, 1, 1, 1]
+Train Epoch: 37 450	Loss: 17.6883 (17.8117) 	
+[1, 1, 1, 1]
+Train Epoch: 37 500	Loss: 17.8191 (17.8123) 	
+[1, 1, 1, 1]
+Train Epoch: 37 550	Loss: 17.3960 (17.8084) 	
+[1, 1, 1, 1]
+Train Epoch: 37 600	Loss: 18.0144 (17.8089) 	
+[1, 1, 1, 1]
+Train Epoch: 37 650	Loss: 17.9763 (17.8110) 	
+[1, 1, 1, 1]
+Train Epoch: 37 700	Loss: 18.0638 (17.8112) 	
+[1, 1, 1, 1]
+Train Epoch: 37 750	Loss: 17.6961 (17.8088) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 38 0	Loss: 17.4178 (17.4178) 	
+[1, 1, 1, 1]
+Train Epoch: 38 50	Loss: 18.0019 (17.7492) 	
+[1, 1, 1, 1]
+Train Epoch: 38 100	Loss: 17.6523 (17.7808) 	
+[1, 1, 1, 1]
+Train Epoch: 38 150	Loss: 18.1242 (17.7937) 	
+[1, 1, 1, 1]
+Train Epoch: 38 200	Loss: 17.4482 (17.7797) 	
+[1, 1, 1, 1]
+Train Epoch: 38 250	Loss: 17.5543 (17.7789) 	
+[1, 1, 1, 1]
+Train Epoch: 38 300	Loss: 17.9157 (17.7780) 	
+[1, 1, 1, 1]
+Train Epoch: 38 350	Loss: 17.7587 (17.7876) 	
+[1, 1, 1, 1]
+Train Epoch: 38 400	Loss: 18.5057 (17.7856) 	
+[1, 1, 1, 1]
+Train Epoch: 38 450	Loss: 17.6258 (17.7821) 	
+[1, 1, 1, 1]
+Train Epoch: 38 500	Loss: 18.0329 (17.7793) 	
+[1, 1, 1, 1]
+Train Epoch: 38 550	Loss: 18.0719 (17.7828) 	
+[1, 1, 1, 1]
+Train Epoch: 38 600	Loss: 18.2433 (17.7847) 	
+[1, 1, 1, 1]
+Train Epoch: 38 650	Loss: 18.0750 (17.7892) 	
+[1, 1, 1, 1]
+Train Epoch: 38 700	Loss: 18.0548 (17.7897) 	
+[1, 1, 1, 1]
+Train Epoch: 38 750	Loss: 18.0753 (17.7978) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 39 0	Loss: 17.4536 (17.4536) 	
+[1, 1, 1, 1]
+Train Epoch: 39 50	Loss: 17.9671 (17.7504) 	
+[1, 1, 1, 1]
+Train Epoch: 39 100	Loss: 18.3740 (17.7384) 	
+[1, 1, 1, 1]
+Train Epoch: 39 150	Loss: 17.6110 (17.7367) 	
+[1, 1, 1, 1]
+Train Epoch: 39 200	Loss: 17.4489 (17.7472) 	
+[1, 1, 1, 1]
+Train Epoch: 39 250	Loss: 17.8177 (17.7569) 	
+[1, 1, 1, 1]
+Train Epoch: 39 300	Loss: 17.6455 (17.7568) 	
+[1, 1, 1, 1]
+Train Epoch: 39 350	Loss: 17.7795 (17.7631) 	
+[1, 1, 1, 1]
+Train Epoch: 39 400	Loss: 17.6597 (17.7747) 	
+[1, 1, 1, 1]
+Train Epoch: 39 450	Loss: 17.5376 (17.7739) 	
+[1, 1, 1, 1]
+Train Epoch: 39 500	Loss: 17.7224 (17.7846) 	
+[1, 1, 1, 1]
+Train Epoch: 39 550	Loss: 17.7582 (17.7855) 	
+[1, 1, 1, 1]
+Train Epoch: 39 600	Loss: 17.5984 (17.7850) 	
+[1, 1, 1, 1]
+Train Epoch: 39 650	Loss: 17.8433 (17.7894) 	
+[1, 1, 1, 1]
+Train Epoch: 39 700	Loss: 17.8141 (17.7900) 	
+[1, 1, 1, 1]
+Train Epoch: 39 750	Loss: 17.9257 (17.7849) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 40 0	Loss: 17.9750 (17.9750) 	
+[1, 1, 1, 1]
+Train Epoch: 40 50	Loss: 17.7718 (17.7088) 	
+[1, 1, 1, 1]
+Train Epoch: 40 100	Loss: 17.8645 (17.7813) 	
+[1, 1, 1, 1]
+Train Epoch: 40 150	Loss: 17.8083 (17.7717) 	
+[1, 1, 1, 1]
+Train Epoch: 40 200	Loss: 17.7912 (17.7822) 	
+[1, 1, 1, 1]
+Train Epoch: 40 250	Loss: 17.7501 (17.7850) 	
+[1, 1, 1, 1]
+Train Epoch: 40 300	Loss: 17.2443 (17.7804) 	
+[1, 1, 1, 1]
+Train Epoch: 40 350	Loss: 17.6240 (17.7839) 	
+[1, 1, 1, 1]
+Train Epoch: 40 400	Loss: 17.4905 (17.7751) 	
+[1, 1, 1, 1]
+Train Epoch: 40 450	Loss: 17.8129 (17.7704) 	
+[1, 1, 1, 1]
+Train Epoch: 40 500	Loss: 17.7011 (17.7731) 	
+[1, 1, 1, 1]
+Train Epoch: 40 550	Loss: 17.3573 (17.7722) 	
+[1, 1, 1, 1]
+Train Epoch: 40 600	Loss: 17.7417 (17.7688) 	
+[1, 1, 1, 1]
+Train Epoch: 40 650	Loss: 17.9482 (17.7695) 	
+[1, 1, 1, 1]
+Train Epoch: 40 700	Loss: 17.4392 (17.7709) 	
+[1, 1, 1, 1]
+Train Epoch: 40 750	Loss: 17.3474 (17.7718) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 41 0	Loss: 18.2801 (18.2801) 	
+[1, 1, 1, 1]
+Train Epoch: 41 50	Loss: 17.8230 (17.8023) 	
+[1, 1, 1, 1]
+Train Epoch: 41 100	Loss: 17.7748 (17.7670) 	
+[1, 1, 1, 1]
+Train Epoch: 41 150	Loss: 17.6712 (17.7782) 	
+[1, 1, 1, 1]
+Train Epoch: 41 200	Loss: 17.5218 (17.7604) 	
+[1, 1, 1, 1]
+Train Epoch: 41 250	Loss: 17.7362 (17.7512) 	
+[1, 1, 1, 1]
+Train Epoch: 41 300	Loss: 18.0686 (17.7583) 	
+[1, 1, 1, 1]
+Train Epoch: 41 350	Loss: 17.2557 (17.7527) 	
+[1, 1, 1, 1]
+Train Epoch: 41 400	Loss: 17.5866 (17.7514) 	
+[1, 1, 1, 1]
+Train Epoch: 41 450	Loss: 18.0383 (17.7545) 	
+[1, 1, 1, 1]
+Train Epoch: 41 500	Loss: 17.4787 (17.7574) 	
+[1, 1, 1, 1]
+Train Epoch: 41 550	Loss: 18.0256 (17.7648) 	
+[1, 1, 1, 1]
+Train Epoch: 41 600	Loss: 17.4759 (17.7647) 	
+[1, 1, 1, 1]
+Train Epoch: 41 650	Loss: 17.2508 (17.7641) 	
+[1, 1, 1, 1]
+Train Epoch: 41 700	Loss: 17.5802 (17.7618) 	
+[1, 1, 1, 1]
+Train Epoch: 41 750	Loss: 17.9170 (17.7655) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 42 0	Loss: 17.8287 (17.8287) 	
+[1, 1, 1, 1]
+Train Epoch: 42 50	Loss: 17.5193 (17.6762) 	
+[1, 1, 1, 1]
+Train Epoch: 42 100	Loss: 17.7894 (17.7099) 	
+[1, 1, 1, 1]
+Train Epoch: 42 150	Loss: 17.6935 (17.7124) 	
+[1, 1, 1, 1]
+Train Epoch: 42 200	Loss: 17.9474 (17.7197) 	
+[1, 1, 1, 1]
+Train Epoch: 42 250	Loss: 17.7030 (17.7345) 	
+[1, 1, 1, 1]
+Train Epoch: 42 300	Loss: 17.5804 (17.7307) 	
+[1, 1, 1, 1]
+Train Epoch: 42 350	Loss: 18.3627 (17.7462) 	
+[1, 1, 1, 1]
+Train Epoch: 42 400	Loss: 17.5758 (17.7501) 	
+[1, 1, 1, 1]
+Train Epoch: 42 450	Loss: 17.7944 (17.7494) 	
+[1, 1, 1, 1]
+Train Epoch: 42 500	Loss: 18.2378 (17.7507) 	
+[1, 1, 1, 1]
+Train Epoch: 42 550	Loss: 18.0425 (17.7487) 	
+[1, 1, 1, 1]
+Train Epoch: 42 600	Loss: 17.7455 (17.7523) 	
+[1, 1, 1, 1]
+Train Epoch: 42 650	Loss: 17.9195 (17.7537) 	
+[1, 1, 1, 1]
+Train Epoch: 42 700	Loss: 17.7761 (17.7510) 	
+[1, 1, 1, 1]
+Train Epoch: 42 750	Loss: 18.3408 (17.7534) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 43 0	Loss: 17.2139 (17.2139) 	
+[1, 1, 1, 1]
+Train Epoch: 43 50	Loss: 17.2792 (17.7267) 	
+[1, 1, 1, 1]
+Train Epoch: 43 100	Loss: 17.5528 (17.7271) 	
+[1, 1, 1, 1]
+Train Epoch: 43 150	Loss: 18.0656 (17.7444) 	
+[1, 1, 1, 1]
+Train Epoch: 43 200	Loss: 17.8779 (17.7473) 	
+[1, 1, 1, 1]
+Train Epoch: 43 250	Loss: 17.8301 (17.7387) 	
+[1, 1, 1, 1]
+Train Epoch: 43 300	Loss: 17.5866 (17.7461) 	
+[1, 1, 1, 1]
+Train Epoch: 43 350	Loss: 18.3438 (17.7544) 	
+[1, 1, 1, 1]
+Train Epoch: 43 400	Loss: 17.5288 (17.7521) 	
+[1, 1, 1, 1]
+Train Epoch: 43 450	Loss: 17.9371 (17.7466) 	
+[1, 1, 1, 1]
+Train Epoch: 43 500	Loss: 17.4627 (17.7452) 	
+[1, 1, 1, 1]
+Train Epoch: 43 550	Loss: 17.4417 (17.7440) 	
+[1, 1, 1, 1]
+Train Epoch: 43 600	Loss: 17.6870 (17.7498) 	
+[1, 1, 1, 1]
+Train Epoch: 43 650	Loss: 17.4227 (17.7542) 	
+[1, 1, 1, 1]
+Train Epoch: 43 700	Loss: 17.9967 (17.7469) 	
+[1, 1, 1, 1]
+Train Epoch: 43 750	Loss: 17.8745 (17.7493) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 44 0	Loss: 17.4369 (17.4369) 	
+[1, 1, 1, 1]
+Train Epoch: 44 50	Loss: 17.5603 (17.6328) 	
+[1, 1, 1, 1]
+Train Epoch: 44 100	Loss: 17.7798 (17.6849) 	
+[1, 1, 1, 1]
+Train Epoch: 44 150	Loss: 17.8573 (17.6890) 	
+[1, 1, 1, 1]
+Train Epoch: 44 200	Loss: 17.9464 (17.6945) 	
+[1, 1, 1, 1]
+Train Epoch: 44 250	Loss: 17.8576 (17.6963) 	
+[1, 1, 1, 1]
+Train Epoch: 44 300	Loss: 17.0470 (17.7084) 	
+[1, 1, 1, 1]
+Train Epoch: 44 350	Loss: 17.3019 (17.7044) 	
+[1, 1, 1, 1]
+Train Epoch: 44 400	Loss: 17.4803 (17.6995) 	
+[1, 1, 1, 1]
+Train Epoch: 44 450	Loss: 17.7432 (17.6945) 	
+[1, 1, 1, 1]
+Train Epoch: 44 500	Loss: 17.6531 (17.7006) 	
+[1, 1, 1, 1]
+Train Epoch: 44 550	Loss: 17.4569 (17.7060) 	
+[1, 1, 1, 1]
+Train Epoch: 44 600	Loss: 17.1916 (17.7104) 	
+[1, 1, 1, 1]
+Train Epoch: 44 650	Loss: 17.6639 (17.7145) 	
+[1, 1, 1, 1]
+Train Epoch: 44 700	Loss: 17.7337 (17.7209) 	
+[1, 1, 1, 1]
+Train Epoch: 44 750	Loss: 17.8483 (17.7199) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 45 0	Loss: 17.8911 (17.8911) 	
+[1, 1, 1, 1]
+Train Epoch: 45 50	Loss: 17.7353 (17.7652) 	
+[1, 1, 1, 1]
+Train Epoch: 45 100	Loss: 17.9910 (17.7215) 	
+[1, 1, 1, 1]
+Train Epoch: 45 150	Loss: 17.6045 (17.7124) 	
+[1, 1, 1, 1]
+Train Epoch: 45 200	Loss: 18.1594 (17.7148) 	
+[1, 1, 1, 1]
+Train Epoch: 45 250	Loss: 17.5003 (17.7110) 	
+[1, 1, 1, 1]
+Train Epoch: 45 300	Loss: 17.9945 (17.7113) 	
+[1, 1, 1, 1]
+Train Epoch: 45 350	Loss: 18.0093 (17.7176) 	
+[1, 1, 1, 1]
+Train Epoch: 45 400	Loss: 17.8383 (17.7152) 	
+[1, 1, 1, 1]
+Train Epoch: 45 450	Loss: 18.0390 (17.7149) 	
+[1, 1, 1, 1]
+Train Epoch: 45 500	Loss: 17.9345 (17.7148) 	
+[1, 1, 1, 1]
+Train Epoch: 45 550	Loss: 17.9138 (17.7175) 	
+[1, 1, 1, 1]
+Train Epoch: 45 600	Loss: 18.1849 (17.7182) 	
+[1, 1, 1, 1]
+Train Epoch: 45 650	Loss: 17.6866 (17.7208) 	
+[1, 1, 1, 1]
+Train Epoch: 45 700	Loss: 17.7370 (17.7208) 	
+[1, 1, 1, 1]
+Train Epoch: 45 750	Loss: 17.9656 (17.7229) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 46 0	Loss: 17.6352 (17.6352) 	
+[1, 1, 1, 1]
+Train Epoch: 46 50	Loss: 17.6920 (17.7067) 	
+[1, 1, 1, 1]
+Train Epoch: 46 100	Loss: 17.4519 (17.6789) 	
+[1, 1, 1, 1]
+Train Epoch: 46 150	Loss: 17.4384 (17.6831) 	
+[1, 1, 1, 1]
+Train Epoch: 46 200	Loss: 17.9522 (17.6804) 	
+[1, 1, 1, 1]
+Train Epoch: 46 250	Loss: 17.5526 (17.7031) 	
+[1, 1, 1, 1]
+Train Epoch: 46 300	Loss: 17.8623 (17.6931) 	
+[1, 1, 1, 1]
+Train Epoch: 46 350	Loss: 17.5897 (17.6888) 	
+[1, 1, 1, 1]
+Train Epoch: 46 400	Loss: 17.9835 (17.6946) 	
+[1, 1, 1, 1]
+Train Epoch: 46 450	Loss: 17.6106 (17.6956) 	
+[1, 1, 1, 1]
+Train Epoch: 46 500	Loss: 17.4592 (17.6935) 	
+[1, 1, 1, 1]
+Train Epoch: 46 550	Loss: 17.9097 (17.7029) 	
+[1, 1, 1, 1]
+Train Epoch: 46 600	Loss: 17.8253 (17.7066) 	
+[1, 1, 1, 1]
+Train Epoch: 46 650	Loss: 18.1360 (17.7095) 	
+[1, 1, 1, 1]
+Train Epoch: 46 700	Loss: 17.6906 (17.7100) 	
+[1, 1, 1, 1]
+Train Epoch: 46 750	Loss: 17.4456 (17.7111) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 47 0	Loss: 18.0578 (18.0578) 	
+[1, 1, 1, 1]
+Train Epoch: 47 50	Loss: 18.0464 (17.6635) 	
+[1, 1, 1, 1]
+Train Epoch: 47 100	Loss: 18.1094 (17.6979) 	
+[1, 1, 1, 1]
+Train Epoch: 47 150	Loss: 17.5837 (17.6953) 	
+[1, 1, 1, 1]
+Train Epoch: 47 200	Loss: 17.7895 (17.6941) 	
+[1, 1, 1, 1]
+Train Epoch: 47 250	Loss: 17.4573 (17.6838) 	
+[1, 1, 1, 1]
+Train Epoch: 47 300	Loss: 17.8833 (17.6855) 	
+[1, 1, 1, 1]
+Train Epoch: 47 350	Loss: 18.2207 (17.6906) 	
+[1, 1, 1, 1]
+Train Epoch: 47 400	Loss: 17.4893 (17.6893) 	
+[1, 1, 1, 1]
+Train Epoch: 47 450	Loss: 18.0368 (17.6888) 	
+[1, 1, 1, 1]
+Train Epoch: 47 500	Loss: 17.7733 (17.6847) 	
+[1, 1, 1, 1]
+Train Epoch: 47 550	Loss: 17.9764 (17.6914) 	
+[1, 1, 1, 1]
+Train Epoch: 47 600	Loss: 18.0340 (17.6918) 	
+[1, 1, 1, 1]
+Train Epoch: 47 650	Loss: 17.6657 (17.6973) 	
+[1, 1, 1, 1]
+Train Epoch: 47 700	Loss: 17.6922 (17.6967) 	
+[1, 1, 1, 1]
+Train Epoch: 47 750	Loss: 18.0706 (17.6993) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 48 0	Loss: 17.7851 (17.7851) 	
+[1, 1, 1, 1]
+Train Epoch: 48 50	Loss: 17.3532 (17.6907) 	
+[1, 1, 1, 1]
+Train Epoch: 48 100	Loss: 17.6870 (17.6858) 	
+[1, 1, 1, 1]
+Train Epoch: 48 150	Loss: 17.9559 (17.6812) 	
+[1, 1, 1, 1]
+Train Epoch: 48 200	Loss: 17.4729 (17.6923) 	
+[1, 1, 1, 1]
+Train Epoch: 48 250	Loss: 17.5558 (17.6986) 	
+[1, 1, 1, 1]
+Train Epoch: 48 300	Loss: 17.8709 (17.7000) 	
+[1, 1, 1, 1]
+Train Epoch: 48 350	Loss: 18.0003 (17.6945) 	
+[1, 1, 1, 1]
+Train Epoch: 48 400	Loss: 18.0302 (17.6950) 	
+[1, 1, 1, 1]
+Train Epoch: 48 450	Loss: 18.3947 (17.6967) 	
+[1, 1, 1, 1]
+Train Epoch: 48 500	Loss: 17.3726 (17.6971) 	
+[1, 1, 1, 1]
+Train Epoch: 48 550	Loss: 17.4916 (17.6950) 	
+[1, 1, 1, 1]
+Train Epoch: 48 600	Loss: 17.8035 (17.6957) 	
+[1, 1, 1, 1]
+Train Epoch: 48 650	Loss: 17.4925 (17.6934) 	
+[1, 1, 1, 1]
+Train Epoch: 48 700	Loss: 18.1332 (17.7003) 	
+[1, 1, 1, 1]
+Train Epoch: 48 750	Loss: 17.8705 (17.7007) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 49 0	Loss: 18.1138 (18.1138) 	
+[1, 1, 1, 1]
+Train Epoch: 49 50	Loss: 17.5674 (17.7274) 	
+[1, 1, 1, 1]
+Train Epoch: 49 100	Loss: 17.6177 (17.7043) 	
+[1, 1, 1, 1]
+Train Epoch: 49 150	Loss: 17.2900 (17.6831) 	
+[1, 1, 1, 1]
+Train Epoch: 49 200	Loss: 18.0717 (17.6917) 	
+[1, 1, 1, 1]
+Train Epoch: 49 250	Loss: 17.5272 (17.6910) 	
+[1, 1, 1, 1]
+Train Epoch: 49 300	Loss: 17.6428 (17.6929) 	
+[1, 1, 1, 1]
+Train Epoch: 49 350	Loss: 17.5679 (17.6867) 	
+[1, 1, 1, 1]
+Train Epoch: 49 400	Loss: 18.1169 (17.6895) 	
+[1, 1, 1, 1]
+Train Epoch: 49 450	Loss: 18.1217 (17.6845) 	
+[1, 1, 1, 1]
+Train Epoch: 49 500	Loss: 17.5623 (17.6828) 	
+[1, 1, 1, 1]
+Train Epoch: 49 550	Loss: 17.6874 (17.6838) 	
+[1, 1, 1, 1]
+Train Epoch: 49 600	Loss: 18.4414 (17.6893) 	
+[1, 1, 1, 1]
+Train Epoch: 49 650	Loss: 17.6072 (17.6882) 	
+[1, 1, 1, 1]
+Train Epoch: 49 700	Loss: 17.4921 (17.6920) 	
+[1, 1, 1, 1]
+Train Epoch: 49 750	Loss: 17.8167 (17.6904) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 50 0	Loss: 17.7314 (17.7314) 	
+[1, 1, 1, 1]
+Train Epoch: 50 50	Loss: 17.5088 (17.6311) 	
+[1, 1, 1, 1]
+Train Epoch: 50 100	Loss: 18.1620 (17.6575) 	
+[1, 1, 1, 1]
+Train Epoch: 50 150	Loss: 17.6306 (17.6568) 	
+[1, 1, 1, 1]
+Train Epoch: 50 200	Loss: 17.7147 (17.6614) 	
+[1, 1, 1, 1]
+Train Epoch: 50 250	Loss: 17.5796 (17.6564) 	
+[1, 1, 1, 1]
+Train Epoch: 50 300	Loss: 17.8807 (17.6554) 	
+[1, 1, 1, 1]
+Train Epoch: 50 350	Loss: 17.8389 (17.6582) 	
+[1, 1, 1, 1]
+Train Epoch: 50 400	Loss: 17.8817 (17.6553) 	
+[1, 1, 1, 1]
+Train Epoch: 50 450	Loss: 17.5406 (17.6546) 	
+[1, 1, 1, 1]
+Train Epoch: 50 500	Loss: 17.5907 (17.6664) 	
+[1, 1, 1, 1]
+Train Epoch: 50 550	Loss: 18.1315 (17.6688) 	
+[1, 1, 1, 1]
+Train Epoch: 50 600	Loss: 17.6680 (17.6714) 	
+[1, 1, 1, 1]
+Train Epoch: 50 650	Loss: 18.0084 (17.6712) 	
+[1, 1, 1, 1]
+Train Epoch: 50 700	Loss: 17.4469 (17.6740) 	
+[1, 1, 1, 1]
+Train Epoch: 50 750	Loss: 17.6863 (17.6715) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 51 0	Loss: 17.7775 (17.7775) 	
+[1, 1, 1, 1]
+Train Epoch: 51 50	Loss: 17.6976 (17.6819) 	
+[1, 1, 1, 1]
+Train Epoch: 51 100	Loss: 17.3417 (17.6690) 	
+[1, 1, 1, 1]
+Train Epoch: 51 150	Loss: 17.8133 (17.6449) 	
+[1, 1, 1, 1]
+Train Epoch: 51 200	Loss: 17.3644 (17.6360) 	
+[1, 1, 1, 1]
+Train Epoch: 51 250	Loss: 17.7423 (17.6380) 	
+[1, 1, 1, 1]
+Train Epoch: 51 300	Loss: 17.9227 (17.6347) 	
+[1, 1, 1, 1]
+Train Epoch: 51 350	Loss: 17.7353 (17.6460) 	
+[1, 1, 1, 1]
+Train Epoch: 51 400	Loss: 17.4287 (17.6458) 	
+[1, 1, 1, 1]
+Train Epoch: 51 450	Loss: 17.6334 (17.6547) 	
+[1, 1, 1, 1]
+Train Epoch: 51 500	Loss: 17.3159 (17.6546) 	
+[1, 1, 1, 1]
+Train Epoch: 51 550	Loss: 17.8822 (17.6620) 	
+[1, 1, 1, 1]
+Train Epoch: 51 600	Loss: 17.8055 (17.6668) 	
+[1, 1, 1, 1]
+Train Epoch: 51 650	Loss: 17.9060 (17.6654) 	
+[1, 1, 1, 1]
+Train Epoch: 51 700	Loss: 18.2606 (17.6684) 	
+[1, 1, 1, 1]
+Train Epoch: 51 750	Loss: 16.8868 (17.6678) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 52 0	Loss: 17.2987 (17.2987) 	
+[1, 1, 1, 1]
+Train Epoch: 52 50	Loss: 17.6281 (17.5879) 	
+[1, 1, 1, 1]
+Train Epoch: 52 100	Loss: 17.6883 (17.6046) 	
+[1, 1, 1, 1]
+Train Epoch: 52 150	Loss: 17.7450 (17.6269) 	
+[1, 1, 1, 1]
+Train Epoch: 52 200	Loss: 17.8102 (17.6335) 	
+[1, 1, 1, 1]
+Train Epoch: 52 250	Loss: 17.5852 (17.6285) 	
+[1, 1, 1, 1]
+Train Epoch: 52 300	Loss: 17.5690 (17.6443) 	
+[1, 1, 1, 1]
+Train Epoch: 52 350	Loss: 17.7062 (17.6342) 	
+[1, 1, 1, 1]
+Train Epoch: 52 400	Loss: 18.2949 (17.6386) 	
+[1, 1, 1, 1]
+Train Epoch: 52 450	Loss: 17.6353 (17.6459) 	
+[1, 1, 1, 1]
+Train Epoch: 52 500	Loss: 18.1985 (17.6345) 	
+[1, 1, 1, 1]
+Train Epoch: 52 550	Loss: 17.6531 (17.6378) 	
+[1, 1, 1, 1]
+Train Epoch: 52 600	Loss: 17.4354 (17.6458) 	
+[1, 1, 1, 1]
+Train Epoch: 52 650	Loss: 16.9269 (17.6442) 	
+[1, 1, 1, 1]
+Train Epoch: 52 700	Loss: 17.5864 (17.6480) 	
+[1, 1, 1, 1]
+Train Epoch: 52 750	Loss: 17.2330 (17.6489) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 53 0	Loss: 17.3498 (17.3498) 	
+[1, 1, 1, 1]
+Train Epoch: 53 50	Loss: 17.7869 (17.6144) 	
+[1, 1, 1, 1]
+Train Epoch: 53 100	Loss: 17.5101 (17.6306) 	
+[1, 1, 1, 1]
+Train Epoch: 53 150	Loss: 18.0521 (17.6183) 	
+[1, 1, 1, 1]
+Train Epoch: 53 200	Loss: 18.1241 (17.6340) 	
+[1, 1, 1, 1]
+Train Epoch: 53 250	Loss: 17.9409 (17.6317) 	
+[1, 1, 1, 1]
+Train Epoch: 53 300	Loss: 17.8233 (17.6438) 	
+[1, 1, 1, 1]
+Train Epoch: 53 350	Loss: 17.1949 (17.6439) 	
+[1, 1, 1, 1]
+Train Epoch: 53 400	Loss: 17.2715 (17.6471) 	
+[1, 1, 1, 1]
+Train Epoch: 53 450	Loss: 18.1058 (17.6414) 	
+[1, 1, 1, 1]
+Train Epoch: 53 500	Loss: 17.1540 (17.6376) 	
+[1, 1, 1, 1]
+Train Epoch: 53 550	Loss: 18.1252 (17.6402) 	
+[1, 1, 1, 1]
+Train Epoch: 53 600	Loss: 17.0050 (17.6441) 	
+[1, 1, 1, 1]
+Train Epoch: 53 650	Loss: 17.9144 (17.6495) 	
+[1, 1, 1, 1]
+Train Epoch: 53 700	Loss: 17.7412 (17.6491) 	
+[1, 1, 1, 1]
+Train Epoch: 53 750	Loss: 17.7176 (17.6486) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 54 0	Loss: 17.3571 (17.3571) 	
+[1, 1, 1, 1]
+Train Epoch: 54 50	Loss: 18.1752 (17.5986) 	
+[1, 1, 1, 1]
+Train Epoch: 54 100	Loss: 17.4194 (17.5903) 	
+[1, 1, 1, 1]
+Train Epoch: 54 150	Loss: 17.6087 (17.6050) 	
+[1, 1, 1, 1]
+Train Epoch: 54 200	Loss: 17.8354 (17.5930) 	
+[1, 1, 1, 1]
+Train Epoch: 54 250	Loss: 17.2961 (17.6004) 	
+[1, 1, 1, 1]
+Train Epoch: 54 300	Loss: 17.8057 (17.6079) 	
+[1, 1, 1, 1]
+Train Epoch: 54 350	Loss: 17.6127 (17.6202) 	
+[1, 1, 1, 1]
+Train Epoch: 54 400	Loss: 17.6467 (17.6209) 	
+[1, 1, 1, 1]
+Train Epoch: 54 450	Loss: 17.6421 (17.6178) 	
+[1, 1, 1, 1]
+Train Epoch: 54 500	Loss: 17.2708 (17.6228) 	
+[1, 1, 1, 1]
+Train Epoch: 54 550	Loss: 17.3250 (17.6230) 	
+[1, 1, 1, 1]
+Train Epoch: 54 600	Loss: 17.3396 (17.6261) 	
+[1, 1, 1, 1]
+Train Epoch: 54 650	Loss: 17.6065 (17.6267) 	
+[1, 1, 1, 1]
+Train Epoch: 54 700	Loss: 17.7233 (17.6274) 	
+[1, 1, 1, 1]
+Train Epoch: 54 750	Loss: 17.8679 (17.6302) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 55 0	Loss: 17.5824 (17.5824) 	
+[1, 1, 1, 1]
+Train Epoch: 55 50	Loss: 17.6434 (17.6466) 	
+[1, 1, 1, 1]
+Train Epoch: 55 100	Loss: 17.4790 (17.6438) 	
+[1, 1, 1, 1]
+Train Epoch: 55 150	Loss: 17.6024 (17.6088) 	
+[1, 1, 1, 1]
+Train Epoch: 55 200	Loss: 17.7770 (17.6132) 	
+[1, 1, 1, 1]
+Train Epoch: 55 250	Loss: 17.7941 (17.6073) 	
+[1, 1, 1, 1]
+Train Epoch: 55 300	Loss: 18.0095 (17.6210) 	
+[1, 1, 1, 1]
+Train Epoch: 55 350	Loss: 17.8868 (17.6254) 	
+[1, 1, 1, 1]
+Train Epoch: 55 400	Loss: 17.5713 (17.6201) 	
+[1, 1, 1, 1]
+Train Epoch: 55 450	Loss: 18.1005 (17.6261) 	
+[1, 1, 1, 1]
+Train Epoch: 55 500	Loss: 17.8754 (17.6272) 	
+[1, 1, 1, 1]
+Train Epoch: 55 550	Loss: 18.0636 (17.6274) 	
+[1, 1, 1, 1]
+Train Epoch: 55 600	Loss: 17.0161 (17.6231) 	
+[1, 1, 1, 1]
+Train Epoch: 55 650	Loss: 17.6239 (17.6226) 	
+[1, 1, 1, 1]
+Train Epoch: 55 700	Loss: 17.2856 (17.6233) 	
+[1, 1, 1, 1]
+Train Epoch: 55 750	Loss: 17.3236 (17.6259) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 56 0	Loss: 17.9501 (17.9501) 	
+[1, 1, 1, 1]
+Train Epoch: 56 50	Loss: 17.6624 (17.6127) 	
+[1, 1, 1, 1]
+Train Epoch: 56 100	Loss: 16.9587 (17.5586) 	
+[1, 1, 1, 1]
+Train Epoch: 56 150	Loss: 17.3811 (17.5823) 	
+[1, 1, 1, 1]
+Train Epoch: 56 200	Loss: 17.4834 (17.5834) 	
+[1, 1, 1, 1]
+Train Epoch: 56 250	Loss: 18.0847 (17.5947) 	
+[1, 1, 1, 1]
+Train Epoch: 56 300	Loss: 17.6485 (17.6102) 	
+[1, 1, 1, 1]
+Train Epoch: 56 350	Loss: 17.6862 (17.6046) 	
+[1, 1, 1, 1]
+Train Epoch: 56 400	Loss: 17.9787 (17.6091) 	
+[1, 1, 1, 1]
+Train Epoch: 56 450	Loss: 17.6227 (17.6086) 	
+[1, 1, 1, 1]
+Train Epoch: 56 500	Loss: 17.3072 (17.6113) 	
+[1, 1, 1, 1]
+Train Epoch: 56 550	Loss: 17.8395 (17.6111) 	
+[1, 1, 1, 1]
+Train Epoch: 56 600	Loss: 17.4826 (17.6088) 	
+[1, 1, 1, 1]
+Train Epoch: 56 650	Loss: 17.4242 (17.6103) 	
+[1, 1, 1, 1]
+Train Epoch: 56 700	Loss: 17.7766 (17.6105) 	
+[1, 1, 1, 1]
+Train Epoch: 56 750	Loss: 17.7789 (17.6168) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 57 0	Loss: 17.3719 (17.3719) 	
+[1, 1, 1, 1]
+Train Epoch: 57 50	Loss: 17.7936 (17.5734) 	
+[1, 1, 1, 1]
+Train Epoch: 57 100	Loss: 17.7433 (17.5762) 	
+[1, 1, 1, 1]
+Train Epoch: 57 150	Loss: 17.9554 (17.5728) 	
+[1, 1, 1, 1]
+Train Epoch: 57 200	Loss: 17.6435 (17.5850) 	
+[1, 1, 1, 1]
+Train Epoch: 57 250	Loss: 17.3733 (17.5816) 	
+[1, 1, 1, 1]
+Train Epoch: 57 300	Loss: 17.1003 (17.5816) 	
+[1, 1, 1, 1]
+Train Epoch: 57 350	Loss: 18.0367 (17.5842) 	
+[1, 1, 1, 1]
+Train Epoch: 57 400	Loss: 17.1491 (17.5921) 	
+[1, 1, 1, 1]
+Train Epoch: 57 450	Loss: 17.5606 (17.5944) 	
+[1, 1, 1, 1]
+Train Epoch: 57 500	Loss: 17.2438 (17.5935) 	
+[1, 1, 1, 1]
+Train Epoch: 57 550	Loss: 17.6531 (17.5978) 	
+[1, 1, 1, 1]
+Train Epoch: 57 600	Loss: 17.2432 (17.5981) 	
+[1, 1, 1, 1]
+Train Epoch: 57 650	Loss: 17.3749 (17.5968) 	
+[1, 1, 1, 1]
+Train Epoch: 57 700	Loss: 17.6944 (17.6004) 	
+[1, 1, 1, 1]
+Train Epoch: 57 750	Loss: 17.2883 (17.6001) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 58 0	Loss: 17.6997 (17.6997) 	
+[1, 1, 1, 1]
+Train Epoch: 58 50	Loss: 17.2767 (17.6545) 	
+[1, 1, 1, 1]
+Train Epoch: 58 100	Loss: 17.1100 (17.6119) 	
+[1, 1, 1, 1]
+Train Epoch: 58 150	Loss: 17.8273 (17.6031) 	
+[1, 1, 1, 1]
+Train Epoch: 58 200	Loss: 18.4599 (17.6040) 	
+[1, 1, 1, 1]
+Train Epoch: 58 250	Loss: 17.4120 (17.5933) 	
+[1, 1, 1, 1]
+Train Epoch: 58 300	Loss: 17.4828 (17.5897) 	
+[1, 1, 1, 1]
+Train Epoch: 58 350	Loss: 17.3873 (17.5904) 	
+[1, 1, 1, 1]
+Train Epoch: 58 400	Loss: 17.6126 (17.5959) 	
+[1, 1, 1, 1]
+Train Epoch: 58 450	Loss: 17.3909 (17.5970) 	
+[1, 1, 1, 1]
+Train Epoch: 58 500	Loss: 17.4806 (17.5941) 	
+[1, 1, 1, 1]
+Train Epoch: 58 550	Loss: 17.5672 (17.5960) 	
+[1, 1, 1, 1]
+Train Epoch: 58 600	Loss: 17.3382 (17.5947) 	
+[1, 1, 1, 1]
+Train Epoch: 58 650	Loss: 17.9662 (17.5927) 	
+[1, 1, 1, 1]
+Train Epoch: 58 700	Loss: 17.5476 (17.5972) 	
+[1, 1, 1, 1]
+Train Epoch: 58 750	Loss: 17.7381 (17.5984) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 59 0	Loss: 17.8064 (17.8064) 	
+[1, 1, 1, 1]
+Train Epoch: 59 50	Loss: 17.3811 (17.5292) 	
+[1, 1, 1, 1]
+Train Epoch: 59 100	Loss: 17.9228 (17.5373) 	
+[1, 1, 1, 1]
+Train Epoch: 59 150	Loss: 17.1728 (17.5411) 	
+[1, 1, 1, 1]
+Train Epoch: 59 200	Loss: 17.5699 (17.5540) 	
+[1, 1, 1, 1]
+Train Epoch: 59 250	Loss: 17.8056 (17.5467) 	
+[1, 1, 1, 1]
+Train Epoch: 59 300	Loss: 17.5219 (17.5524) 	
+[1, 1, 1, 1]
+Train Epoch: 59 350	Loss: 17.0705 (17.5421) 	
+[1, 1, 1, 1]
+Train Epoch: 59 400	Loss: 17.2991 (17.5503) 	
+[1, 1, 1, 1]
+Train Epoch: 59 450	Loss: 17.4203 (17.5522) 	
+[1, 1, 1, 1]
+Train Epoch: 59 500	Loss: 17.8604 (17.5553) 	
+[1, 1, 1, 1]
+Train Epoch: 59 550	Loss: 17.4703 (17.5606) 	
+[1, 1, 1, 1]
+Train Epoch: 59 600	Loss: 17.9883 (17.5711) 	
+[1, 1, 1, 1]
+Train Epoch: 59 650	Loss: 17.9788 (17.5700) 	
+[1, 1, 1, 1]
+Train Epoch: 59 700	Loss: 17.7124 (17.5740) 	
+[1, 1, 1, 1]
+Train Epoch: 59 750	Loss: 17.5823 (17.5791) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 60 0	Loss: 17.6515 (17.6515) 	
+[1, 1, 1, 1]
+Train Epoch: 60 50	Loss: 17.1914 (17.6588) 	
+[1, 1, 1, 1]
+Train Epoch: 60 100	Loss: 17.6196 (17.6360) 	
+[1, 1, 1, 1]
+Train Epoch: 60 150	Loss: 17.6683 (17.6233) 	
+[1, 1, 1, 1]
+Train Epoch: 60 200	Loss: 17.9402 (17.6182) 	
+[1, 1, 1, 1]
+Train Epoch: 60 250	Loss: 17.5573 (17.6094) 	
+[1, 1, 1, 1]
+Train Epoch: 60 300	Loss: 17.4683 (17.6120) 	
+[1, 1, 1, 1]
+Train Epoch: 60 350	Loss: 17.8276 (17.6043) 	
+[1, 1, 1, 1]
+Train Epoch: 60 400	Loss: 17.9978 (17.5924) 	
+[1, 1, 1, 1]
+Train Epoch: 60 450	Loss: 17.5736 (17.5862) 	
+[1, 1, 1, 1]
+Train Epoch: 60 500	Loss: 17.8165 (17.5858) 	
+[1, 1, 1, 1]
+Train Epoch: 60 550	Loss: 17.9366 (17.5903) 	
+[1, 1, 1, 1]
+Train Epoch: 60 600	Loss: 17.8609 (17.5899) 	
+[1, 1, 1, 1]
+Train Epoch: 60 650	Loss: 17.8955 (17.5916) 	
+[1, 1, 1, 1]
+Train Epoch: 60 700	Loss: 17.7261 (17.5951) 	
+[1, 1, 1, 1]
+Train Epoch: 60 750	Loss: 17.5945 (17.5884) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 61 0	Loss: 17.6204 (17.6204) 	
+[1, 1, 1, 1]
+Train Epoch: 61 50	Loss: 17.4371 (17.4991) 	
+[1, 1, 1, 1]
+Train Epoch: 61 100	Loss: 16.9155 (17.5402) 	
+[1, 1, 1, 1]
+Train Epoch: 61 150	Loss: 17.5497 (17.5438) 	
+[1, 1, 1, 1]
+Train Epoch: 61 200	Loss: 17.6438 (17.5444) 	
+[1, 1, 1, 1]
+Train Epoch: 61 250	Loss: 17.0714 (17.5496) 	
+[1, 1, 1, 1]
+Train Epoch: 61 300	Loss: 17.9599 (17.5666) 	
+[1, 1, 1, 1]
+Train Epoch: 61 350	Loss: 17.3057 (17.5571) 	
+[1, 1, 1, 1]
+Train Epoch: 61 400	Loss: 17.2188 (17.5599) 	
+[1, 1, 1, 1]
+Train Epoch: 61 450	Loss: 17.7205 (17.5569) 	
+[1, 1, 1, 1]
+Train Epoch: 61 500	Loss: 17.3092 (17.5610) 	
+[1, 1, 1, 1]
+Train Epoch: 61 550	Loss: 17.1836 (17.5624) 	
+[1, 1, 1, 1]
+Train Epoch: 61 600	Loss: 17.3287 (17.5657) 	
+[1, 1, 1, 1]
+Train Epoch: 61 650	Loss: 17.5419 (17.5661) 	
+[1, 1, 1, 1]
+Train Epoch: 61 700	Loss: 17.2256 (17.5651) 	
+[1, 1, 1, 1]
+Train Epoch: 61 750	Loss: 17.6200 (17.5724) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 62 0	Loss: 17.4727 (17.4727) 	
+[1, 1, 1, 1]
+Train Epoch: 62 50	Loss: 17.6270 (17.6343) 	
+[1, 1, 1, 1]
+Train Epoch: 62 100	Loss: 17.4590 (17.5933) 	
+[1, 1, 1, 1]
+Train Epoch: 62 150	Loss: 17.5375 (17.5746) 	
+[1, 1, 1, 1]
+Train Epoch: 62 200	Loss: 18.1348 (17.5673) 	
+[1, 1, 1, 1]
+Train Epoch: 62 250	Loss: 17.5011 (17.5596) 	
+[1, 1, 1, 1]
+Train Epoch: 62 300	Loss: 17.0312 (17.5612) 	
+[1, 1, 1, 1]
+Train Epoch: 62 350	Loss: 17.4947 (17.5548) 	
+[1, 1, 1, 1]
+Train Epoch: 62 400	Loss: 17.3126 (17.5439) 	
+[1, 1, 1, 1]
+Train Epoch: 62 450	Loss: 17.9235 (17.5448) 	
+[1, 1, 1, 1]
+Train Epoch: 62 500	Loss: 18.1992 (17.5472) 	
+[1, 1, 1, 1]
+Train Epoch: 62 550	Loss: 17.6026 (17.5458) 	
+[1, 1, 1, 1]
+Train Epoch: 62 600	Loss: 17.8106 (17.5474) 	
+[1, 1, 1, 1]
+Train Epoch: 62 650	Loss: 17.7561 (17.5501) 	
+[1, 1, 1, 1]
+Train Epoch: 62 700	Loss: 17.5205 (17.5514) 	
+[1, 1, 1, 1]
+Train Epoch: 62 750	Loss: 17.8670 (17.5542) 	
+/data/ddmg/users/emilymu/.conda/envs/py36/lib/python3.6/site-packages/PIL/Image.py:976: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  "Palette images with Transparency expressed in bytes should be "
+[1, 1, 1, 1]
+Train Epoch: 63 0	Loss: 17.7618 (17.7618) 	
+[1, 1, 1, 1]
+Train Epoch: 63 50	Loss: 17.6206 (17.4682) 	
+[1, 1, 1, 1]
+Train Epoch: 63 100	Loss: 17.7162 (17.4884) 	
+[1, 1, 1, 1]
+Train Epoch: 63 150	Loss: 18.1900 (17.5067) 	
+[1, 1, 1, 1]
+Train Epoch: 63 200	Loss: 17.4568 (17.5104) 	
+[1, 1, 1, 1]
+Train Epoch: 63 250	Loss: 17.7074 (17.5258) 	
+[1, 1, 1, 1]
+Train Epoch: 63 300	Loss: 17.3141 (17.5268) 	
+[1, 1, 1, 1]
+Train Epoch: 63 350	Loss: 17.4663 (17.5368) 	
+[1, 1, 1, 1]
+Train Epoch: 63 400	Loss: 17.4691 (17.5395) 	
+[1, 1, 1, 1]
+Train Epoch: 63 450	Loss: 17.7388 (17.5450) 	
+[1, 1, 1, 1]
+Train Epoch: 63 500	Loss: 17.5944 (17.5445) 	
+[1, 1, 1, 1]
+Train Epoch: 63 550	Loss: 18.0021 (17.5488) 	
+[1, 1, 1, 1]
+Train Epoch: 63 600	Loss: 17.2566 (17.5494) 	
+[1, 1, 1, 1]
+Train Epoch: 63 650	Loss: 17.6143 (17.5515) 	
+[1, 1, 1, 1]
+Train Epoch: 63 700	Loss: 17.0464 (17.5522) 	
+[1, 1, 1, 1]
+Train Epoch: 63 750	Loss: 17.6021 (17.5541) 	

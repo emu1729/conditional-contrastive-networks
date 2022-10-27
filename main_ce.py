@@ -12,7 +12,7 @@ from torch.autograd import Variable
 import torch.backends.cudnn as cudnn
 from triplet_image_loader import TripletImageLoader
 from tripletnet import CS_Tripletnet
-from data_loader import SimpleDataManager
+from data_loader import SimpleDataManager, TransformLoader
 from supcon import SupConLoss, CondSupConLoss
 import time
 import numpy as np
@@ -20,12 +20,14 @@ import Resnet_18
 from Resnet_18 import LinearClassifier
 from ccn import ConditionalContrastiveNetwork, MultiTaskNetwork, ContrastiveNetwork
 from csn import ConditionalSimNet
+import model_utils
+import medic_dataset
 
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch CCN Example')
 parser.add_argument('--batch-size', type=int, default=64, metavar='N',
                     help='input batch size for training (default: 64)')
-parser.add_argument('--epochs', type=int, default=20, metavar='N',
+parser.add_argument('--epochs', type=int, default=10, metavar='N',
                     help='number of epochs to train (default: 200)')
 parser.add_argument('--start_epoch', type=int, default=1, metavar='N',
                     help='number of start epoch (default: 1)')
@@ -65,6 +67,10 @@ parser.add_argument('--category', type=str,
                     help='category to train for')
 parser.add_argument('--metadata', type=str, default='/data/ddmg/xray_data/zappos50k_data/zap50k_meta.csv',
                     help='metadata filename')
+parser.add_argument('--dataset', type=str, default='zappos50k',
+                    help='dataset name')
+parser.add_argument('--n_conditions', type=int, default=3,
+                    help='ccn number of conditions')
 
 # other
 parser.add_argument('--seed', type=int, default=1, metavar='S',
@@ -73,6 +79,8 @@ parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='enables no CUDA training')
 parser.add_argument('--test', dest='test', action='store_true',
                     help='To only run inference on test set')
+parser.add_argument('--train_only', dest='train_only', action='store_true',
+                    help='To only perform training')
 parser.add_argument('--warm', action='store_true',
                     help='warm-up for large batch training')
 parser.set_defaults(test=False)
@@ -95,6 +103,8 @@ def main():
     
     kwargs = {'num_workers': 4, 'pin_memory': True} if args.cuda else {}
 
+    args.name = args.dataset + '/' + args.name
+
     if args.checkpoint:
         args.name = args.name + '_' + args.prev_model
     if args.category:
@@ -103,48 +113,146 @@ def main():
     if args.category == 'Brand':
         args.metadata = '/data/ddmg/xray_data/zappos50k_data/zap50k_meta_brand.csv'
 
+    if args.dataset == 'zappos50k':
+        args.data_path = '/data/ddmg/xray_data/zappos50k_data/ut-zap50k-images/'
+        num_classes_tasks = {
+            'Category': 4,
+            'Closure': 5,
+            'Gender': 4
+        }
+        args.n_classes = num_classes_tasks[args.category]
+        args.model = 'resnet18'
+        args.im_dim = 112
+        args.aug = True
+        args.cond_tasks = [4, 5, 4]
+        args.n_conditions = 3
+        args.model = 'resnet18'
+    elif args.dataset == 'trifeature':
+        args.data_path = '/data/ddmg/xray_data/trifeature/color_texture_shape_stimuli/'
+        args.model = 'resnet18'
+        args.im_dim = 112
+        args.aug = False
+        args.cond_tasks = [5, 5]
+        args.n_conditions = 2
+        args.model = 'resnet18'
+        args.dim_proj = 64
+    elif args.dataset == 'medic':
+        args.data_path = '/data/ddmg/xray_data/MEDIC/'
+        num_classes_tasks = {
+            'damage_severity': 3,
+            'informative': 2,
+            'humanitarian': 4,
+            'disaster_types': 7
+        }
+        args.cond_tasks = [3, 2, 4, 7]
+        args.n_classes = num_classes_tasks[args.category]
+        args.transform_train = TransformLoader(224).get_composed_transform(True, False, False)
+        args.transform_val = TransformLoader(224).get_composed_transform(False, False, False)
+        args.sep = '\t'
+        args.metadata_train = '/data/ddmg/xray_data/MEDIC/MEDIC_train.tsv'
+        args.metadata_val = '/data/ddmg/xray_data/MEDIC/MEDIC_dev.tsv'
+        args.metadata_test = '/data/ddmg/xray_data/MEDIC/MEDIC_test.tsv'
+        args.model = 'resnet50'
+        args.dim_proj = 64
+        args.n_conditions = 3
+    elif args.dataset == 'pacs':
+        import deeplake
+        train_ds = deeplake.load("hub://activeloop/pacs-train")
+        val_ds = deeplake.load("hub://activeloop/pacs-val")
+        test_ds = deeplake.load("hub://activeloop/pacs-test")
+        args.model = 'resnet50'
+        args.transform = TransformLoader(224).get_composed_transform(True, False, True)
+        args.transform_val = TransformLoader(224).get_composed_transform(False, False, True)
+        args.cond_tasks = [7, 4]
+        args.n_conditions = 2
+    elif args.dataset == 'fitzpatrick17k':
+        args.metadata = '/data/ddmg/xray_data/fitzpatrick17k/fitzpatrick17k_meta.csv'
+        args.model = 'vgg16'
+        args.aug = True
+        args.data_path = '/data/ddmg/xray_data/fitzpatrick17k/'
+        args.im_dim = 224
+        args.cond_tasks = [13, args.n_classes]
+        args.dim_proj = 64
+    else:
+        raise ValueError('Dataset not defined.')
+
     print("Loading Data ...")
-    train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, targets=[args.category], supcon=False)
-    train_loader = train_datamgr.get_data_loader(args.metadata, split='train', aug=True)
+    if args.dataset in ['zappos50k', 'trifeature', 'fitzpatrick17k']:
+        train_datamgr = SimpleDataManager(args.im_dim, batch_size=args.batch_size, targets=[args.category],
+                                          data_path=args.data_path, supcon=False)
+        train_loader = train_datamgr.get_data_loader(args.metadata, split='train', aug=args.aug)
 
-    val_datamgr = SimpleDataManager(112, batch_size=args.batch_size, targets=[args.category], supcon=False)
-    val_loader = val_datamgr.get_data_loader(args.metadata, split='val', aug=False)
+        if not args.train_only:
+            val_datamgr = SimpleDataManager(args.im_dim, batch_size=args.batch_size, targets=[args.category],
+                                            data_path=args.data_path, supcon=False)
+            val_loader = val_datamgr.get_data_loader(args.metadata, split='val', aug=False)
 
-    test_datamgr = SimpleDataManager(112, batch_size=512, targets=[args.category], supcon=False)
-    test_loader = test_datamgr.get_data_loader(args.metadata, split='test', aug=False)
+            test_datamgr = SimpleDataManager(args.im_dim, batch_size=32, targets=[args.category],
+                                             data_path=args.data_path, supcon=False)
+            test_loader = test_datamgr.get_data_loader(args.metadata, split='test', aug=False)
+    elif args.dataset == 'medic':
+        train_dataset = medic_dataset.MultitaskDataset(args.metadata_train, args.sep, args.data_path, args.transform_train,
+                                                       [args.category])
+        train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True,
+                                                   num_workers=12)
+        val_dataset = medic_dataset.MultitaskDataset(args.metadata_val, args.sep, args.data_path, args.transform_val,
+                                                     [args.category])
+        val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=args.batch_size, shuffle=True,
+                                                 num_workers=12)
+        test_dataset = medic_dataset.MultitaskDataset(args.metadata_test, args.sep, args.data_path, args.transform_val,
+                                                      [args.category])
+        test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size, shuffle=True,
+                                                 num_workers=12)
+    elif args.dataset == 'pacs':
+        if args.category == 'labels':
+            train_loader = train_ds.pytorch(num_workers=12, batch_size=args.batch_size,
+                                            transform={'images': args.transform, 'labels': None}, shuffle=True)
+            val_loader = val_ds.pytorch(num_workers=12, batch_size=args.batch_size,
+                                        transform={'images': args.transform_val, 'labels': None}, shuffle=True)
+            test_loader = test_ds.pytorch(num_workers=12, batch_size=args.batch_size,
+                                          transform={'images': args.transform_val, 'labels': None}, shuffle=True)
+        elif args.category == 'domains':
+            train_loader = train_ds.pytorch(num_workers=12, batch_size=args.batch_size,
+                                            transform={'images': args.transform, 'domains': None}, shuffle=True)
+            val_loader = val_ds.pytorch(num_workers=12, batch_size=args.batch_size,
+                                        transform={'images': args.transform_val, 'domains': None}, shuffle=True)
+            test_loader = test_ds.pytorch(num_workers=12, batch_size=args.batch_size,
+                                          transform={'images': args.transform_val, 'domains': None}, shuffle=True)
+        else:
+            raise ValueError('Category not supported')
+
+    if args.model == 'resnet18':
+        model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
+    elif args.model in ['resnet50', 'vgg16']:
+        model, resize_image_size, input_image_size, args.dim_embed = model_utils.initialize_model(args.model)
 
     if args.checkpoint:
         print("Loading previous checkpoint ...")
-        if args.prev_model == 'CCN':
-            model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
-            ccn_model = ConditionalContrastiveNetwork(model, n_conditions=3, embedding_size=args.dim_embed,
-                                                      projection_size=args.dim_proj)
+        if 'CCN' in args.prev_model:
+            ccn_model = ConditionalContrastiveNetwork(model, n_conditions=args.n_conditions,
+                                                      embedding_size=args.dim_embed, projection_size=args.dim_proj)
             checkpoint = torch.load(args.checkpoint)
             ccn_model.load_state_dict(checkpoint['state'])
             model = ccn_model.embedding_net
         elif args.prev_model == 'CSN':
-            model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
             csn_model = ConditionalSimNet(model, n_conditions=4,
                                           embedding_size=args.dim_embed, learnedmask=True, prein=False)
             tnet = CS_Tripletnet(csn_model)
             checkpoint = torch.load(args.checkpoint)
             tnet.load_state_dict(checkpoint['state_dict'])
             model = tnet.embeddingnet.embeddingnet
-        elif 'SupCon' in args.prev_model:
-            model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
+        elif 'SupCon' in args.prev_model or 'SimCLR' in args.prev_model:
             con_model = ContrastiveNetwork(model, embedding_size=args.dim_embed, projection_size=args.dim_proj)
             checkpoint = torch.load(args.checkpoint)
             con_model.load_state_dict(checkpoint['state'])
             model = con_model.embedding_net
         elif 'CE' in args.prev_model:
-            model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
             lin_model = LinearClassifier(model, embedding_size=args.dim_embed, n_classes=args.n_classes_prev)
             checkpoint = torch.load(args.checkpoint)
             lin_model.load_state_dict(checkpoint['state'])
             model = lin_model.embedding_net
-        elif args.prev_model == 'MultiTask':
-            model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
-            mt_model = MultiTaskNetwork(model, embedding_size=args.dim_embed, cond_tasks=[4,5,4])
+        elif 'MultiTask' in args.prev_model:
+            mt_model = MultiTaskNetwork(model, embedding_size=args.dim_embed, cond_tasks=args.cond_tasks)
             checkpoint = torch.load(args.checkpoint)
             mt_model.load_state_dict(checkpoint['state'])
             model = mt_model.embedding_net
@@ -153,10 +261,8 @@ def main():
         lin_model = LinearClassifier(model, embedding_size=args.dim_embed, n_classes=args.n_classes)
         for param in lin_model.embedding_net.parameters():
             param.requires_grad = False
-        print(lin_model)
     else:
         print("Setting up Model ...")
-        model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
         lin_model = LinearClassifier(model, embedding_size=args.dim_embed, n_classes=args.n_classes)
 
     criterion = torch.nn.CrossEntropyLoss()
@@ -176,21 +282,31 @@ def main():
         adjust_learning_rate(optimizer, epoch)
         # train for one epoch
         train(train_loader, lin_model, criterion, optimizer, epoch, args)
-        losses, top1, top1_std = validate(val_loader, lin_model, criterion, args)
-        if top1 > top1_best:
-            top1_best = top1
-            # remember best acc and save checkpoint
-            directory = "runs/%s/" % (args.name)
-            if not os.path.exists(directory):
-                os.makedirs(directory)
-            filename = directory + "lr" + str(args.lr) + '_checkpoint.pth.tar'
-            torch.save({'epoch': epoch, 'state': lin_model.state_dict()}, filename)
-            loss, test_acc, test_std = validate(test_loader, lin_model, criterion, args)
+        if args.train_only:
+            if epoch % 50 == 0:
+                # remember best acc and save checkpoint
+                directory = "runs/%s/" % (args.name)
+                if not os.path.exists(directory):
+                    os.makedirs(directory)
+                filename = directory + "lr" + str(args.lr) + "_epoch" + str(epoch) + '_checkpoint.pth.tar'
+                torch.save({'epoch': epoch, 'state': lin_model.state_dict()}, filename)
+        else:
+            losses, top1, top1_std = validate(val_loader, lin_model, criterion, args)
+            if top1 > top1_best:
+                top1_best = top1
+                # remember best acc and save checkpoint
+                directory = "runs/%s/" % (args.name)
+                if not os.path.exists(directory):
+                    os.makedirs(directory)
+                filename = directory + "lr" + str(args.lr) + '_checkpoint.pth.tar'
+                torch.save({'epoch': epoch, 'state': lin_model.state_dict()}, filename)
+                loss, test_acc, test_std = validate(test_loader, lin_model, criterion, args)
 
-    print("Best Test Acc:")
-    print(test_acc)
-    print("Best Test Std:")
-    print(test_std)
+    if not args.train_only:
+        print("Best Test Acc:")
+        print(test_acc)
+        print("Best Test Std:")
+        print(test_std)
 
 
 def train(train_loader, classifier, criterion, optimizer, epoch, opt):
@@ -204,9 +320,19 @@ def train(train_loader, classifier, criterion, optimizer, epoch, opt):
 
     end = time.time()
 
-    for idx, (features, labels) in enumerate(train_loader):
+    for idx, data in enumerate(train_loader):
 
         data_time.update(time.time() - end)
+
+        if opt.dataset == 'pacs':
+            features = data['images']
+            if 'labels' in data.keys():
+                labels = data['labels']
+            elif 'domains' in data.keys():
+                labels = data['domains']
+            labels = torch.squeeze(labels)
+        else:
+            (features, labels) = data
 
         features = features.float()
 
@@ -264,7 +390,18 @@ def validate(val_loader, classifier, criterion, opt):
 
     with torch.no_grad():
         end = time.time()
-        for idx, (features, labels) in enumerate(val_loader):
+        for idx, data in enumerate(val_loader):
+
+            if opt.dataset == 'pacs':
+                features = data['images']
+                if 'labels' in data.keys():
+                    labels = data['labels']
+                elif 'domains' in data.keys():
+                    labels = data['domains']
+                labels = torch.squeeze(labels)
+            else:
+                (features, labels) = data
+
             features = features.float().cuda()
             labels = labels.cuda()
             bsz = labels.shape[0]

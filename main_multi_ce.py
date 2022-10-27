@@ -12,11 +12,13 @@ from torch.autograd import Variable
 import torch.backends.cudnn as cudnn
 from triplet_image_loader import TripletImageLoader
 from tripletnet import CS_Tripletnet
-from data_loader import SimpleDataManager
+from data_loader import SimpleDataManager, TransformLoader
 from supcon import SupConLoss, CondSupConLoss
 import numpy as np
 import Resnet_18
 from ccn import ConditionalContrastiveNetwork, MultiTaskNetwork
+import model_utils
+import medic_dataset
 
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch MultiTask Example')
@@ -26,7 +28,7 @@ parser.add_argument('--epochs', type=int, default=200, metavar='N',
                     help='number of epochs to train (default: 200)')
 parser.add_argument('--start_epoch', type=int, default=1, metavar='N',
                     help='number of start epoch (default: 1)')
-parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
+parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
                     help='learning rate (default: 0.001)')
 parser.add_argument('--momentum', type=float, default=0.9, metavar='momentum',
                     help='momentum')
@@ -46,10 +48,16 @@ parser.add_argument('--dim_embed', type=int, default=128, metavar='N',
                     help='how many dimensions in embedding (default: 64)')
 parser.add_argument('--test', dest='test', action='store_true',
                     help='To only run inference on test set')
-parser.add_argument('--visdom', dest='visdom', action='store_true',
-                    help='Use visdom to track and plot')
 parser.add_argument('--metadata', type=str, default='/data/ddmg/xray_data/zappos50k_data/zap50k_meta.csv',
                     help='metadata filename')
+parser.add_argument('--dataset', type=str, default='zappos50k',
+                    help='dataset name')
+parser.add_argument('--weights', action='store_true',
+                    help='use weighted classes')
+parser.add_argument('--category', type=str,
+                    help='categories to train for')
+parser.add_argument('--n_classes_list', type=str,
+                    help='how many classes for each category')
 parser.set_defaults(test=False)
 parser.set_defaults(visdom=False)
 
@@ -64,13 +72,77 @@ def main():
     if args.cuda:
         torch.cuda.manual_seed(args.seed)
 
+    if args.dataset == 'zappos50k':
+        args.data_path = '/data/ddmg/xray_data/zappos50k_data/ut-zap50k-images/'
+        args.model = 'resnet18'
+        args.im_dim = 112
+        args.aug = True
+        args.cond_tasks = [4, 5, 4]
+        args.categories = ['Category', 'Closure', 'Gender']
+    elif args.dataset == 'trifeature':
+        args.data_path = '/data/ddmg/xray_data/trifeature/color_texture_shape_stimuli/'
+        args.model = 'resnet18'
+        args.im_dim = 112
+        args.batch_size = 64
+        args.aug = False
+        args.cond_tasks = [5, 5]
+        args.categories = ['shape_t', 'texture_t']
+    elif args.dataset == 'medic':
+        args.data_path = '/data/ddmg/xray_data/MEDIC/'
+        args.num_classes_tasks = {
+            'damage_severity': 3,
+            'informative': 2,
+            'humanitarian': 4,
+            'disaster_types': 7
+        }
+        args.categories = args.category.split(',')
+        args.cond_tasks = [args.num_classes_tasks[t] for t in args.categories]
+        args.transform_train = TransformLoader(224).get_composed_transform(True, False, False)
+        args.transform_val = TransformLoader(224).get_composed_transform(False, False, False)
+        args.sep = '\t'
+        args.metadata = '/data/ddmg/xray_data/MEDIC/MEDIC_train.tsv'
+        args.model = 'resnet50'
+    elif args.dataset == 'pacs':
+        import deeplake
+        train_ds = deeplake.load("hub://activeloop/pacs-train")
+        args.model = 'resnet50'
+        args.transform = TransformLoader(224).get_composed_transform(True, False, True)
+        args.cond_tasks = [7, 4]
+        args.categories = ['labels', 'domains']
+    elif args.dataset == 'fitzpatrick17k':
+        args.metadata = '/data/ddmg/xray_data/fitzpatrick17k/fitzpatrick17k_meta.csv'
+        args.model = 'vgg16'
+        args.aug = True
+        args.data_path = '/data/ddmg/xray_data/fitzpatrick17k/'
+        args.im_dim = 224
+        args.categories = args.category.split(',')
+        args.cond_tasks = [int(n) for n in args.n_classes_list.split(',')]
+    else:
+        raise ValueError('Dataset not defined.')
+
     print("Loading Data ...")
-    train_datamgr = SimpleDataManager(112, batch_size=args.batch_size, supcon=False)
-    train_loader = train_datamgr.get_data_loader(args.metadata, split='train', aug=True)
+    if args.dataset in ['zappos50k', 'trifeature', 'fitzpatrick17k']:
+        train_datamgr = SimpleDataManager(args.im_dim, batch_size=args.batch_size, targets=args.categories,
+                                          data_path=args.data_path, supcon=False)
+        train_loader = train_datamgr.get_data_loader(args.metadata, split='train', aug=args.aug)
+    elif args.dataset == 'medic':
+        train_dataset = medic_dataset.MultitaskDataset(args.metadata, args.sep, args.data_path, args.transform_train,
+                                                       args.categories)
+        train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True,
+                                                   num_workers=12)
+    elif args.dataset == 'pacs':
+        train_loader = train_ds.pytorch(num_workers=12, batch_size=args.batch_size,
+                                        transform={'images': args.transform, 'labels': None, 'domains': None},
+                                        shuffle=True)
 
     print("Setting up Model ...")
-    model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
-    mt_model = MultiTaskNetwork(model, embedding_size=args.dim_embed, cond_tasks=[4,5,4])
+    if args.model == 'resnet18':
+        model = Resnet_18.resnet18(pretrained=True, embedding_size=args.dim_embed)
+        mt_model = MultiTaskNetwork(model, embedding_size=args.dim_embed, cond_tasks=args.cond_tasks)
+    else:
+        model, resize_image_size, input_image_size, num_features = model_utils.initialize_model(args.model)
+        print(num_features)
+        mt_model = MultiTaskNetwork(model, embedding_size=num_features, cond_tasks=args.cond_tasks)
 
     if args.cuda:
         mt_model.cuda()
@@ -89,15 +161,25 @@ def main():
 
     cudnn.benchmark = True
 
-    criterion = torch.nn.CrossEntropyLoss()
-    optimizer = torch.optim.SGD(mt_model.parameters(), lr=args.lr, momentum=args.momentum,
-                                weight_decay=args.weight_decay)
+    if args.weights:
+        criterion = MultiCEWeighted(mt_model, torch.nn.CrossEntropyLoss(), len(args.categories))
+        if args.cuda:
+            criterion.cuda()
+        optimizer = torch.optim.SGD(criterion.parameters(), lr=args.lr, momentum=args.momentum,
+                                    weight_decay=args.weight_decay)
+    else:
+        criterion = torch.nn.CrossEntropyLoss()
+        optimizer = torch.optim.SGD(mt_model.parameters(), lr=args.lr, momentum=args.momentum,
+                                    weight_decay=args.weight_decay)
 
     for epoch in range(args.start_epoch, args.epochs + 1):
         # update learning rate
         adjust_learning_rate(optimizer, epoch)
         # train for one epoch
-        train(train_loader, mt_model, criterion, optimizer, epoch, args.cuda)
+        if args.dataset == 'pacs':
+            train_pacs(train_loader, mt_model, criterion, optimizer, epoch, args.cuda, args.weights)
+        else:
+            train(train_loader, mt_model, criterion, optimizer, epoch, args.cuda, args.weights)
 
         if epoch % 50 == 0:
             # remember best acc and save checkpoint
@@ -108,7 +190,86 @@ def main():
             torch.save({'epoch': epoch, 'state': mt_model.state_dict()}, filename)
 
 
-def train(train_loader, model, criterion, optimizer, epoch, cuda):
+class MultiCEWeighted(nn.Module):
+    def __init__(self, model, criterion, n_conditions):
+        super(MultiCEWeighted, self).__init__()
+        self.model = model
+        self.n_conditions = n_conditions
+        self.criterion = criterion
+        self.weights = nn.Parameter(torch.ones(n_conditions))
+
+    def forward(self, images, labels=None):
+        """Args:
+            features: hidden vector of shape [bsz, n_conditions, n_views, ...].
+            labels: ground truth of shape [bsz, n_conditions].
+            mask: contrastive mask of shape [bsz, bsz], mask_{i,j}=1 if sample j
+                has the same class as sample i. Can be asymmetric.
+        Returns:
+            A loss scalar.
+        """
+        features = self.model(images)
+        losses = []
+        for i in range(len(features)):
+            losses.append(self.criterion(features[i], labels[i]))
+        loss = torch.stack(losses) * torch.exp(-self.weights) + self.weights
+        return loss.sum()
+
+
+def train_pacs(train_loader, model, criterion, optimizer, epoch, cuda, weights):
+    losses = AverageMeter()
+
+    # switch to train mode
+    model.train()
+    for batch_idx, data in enumerate(train_loader):
+        images = data['images']
+        labels = torch.squeeze(data['labels'])
+        domains = torch.squeeze(data['domains'])
+        images = images.float()
+        labels = [labels, domains]
+
+        if cuda:
+            images = images.cuda(non_blocking=True)
+            labels = [l.cuda() for l in labels]
+        bsz = labels[0].shape[0]
+
+        if weights:
+            loss = criterion(images, labels)
+            # update metric
+            losses.update(loss.item(), bsz)
+
+            # compute gradient and do optimizer step
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            if batch_idx % 50 == 0:
+                print(criterion.weights)
+                print('Train Epoch: {} {}\t'
+                      'Loss: {:.4f} ({:.4f}) \t'.format(
+                    epoch, batch_idx,
+                    losses.val, losses.avg))
+        else:
+            features = model(images)
+            loss = 0
+            for i in range(len(features)):
+                loss += criterion(features[i], labels[i])
+
+            # update metric
+            losses.update(loss.item(), bsz)
+
+            # compute gradient and do optimizer step
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            if batch_idx % 50 == 0:
+                print('Train Epoch: {} {}\t'
+                      'Loss: {:.4f} ({:.4f}) \t'.format(
+                    epoch, batch_idx,
+                    losses.val, losses.avg))
+
+
+def train(train_loader, model, criterion, optimizer, epoch, cuda, weights):
     losses = AverageMeter()
 
     # switch to train mode
@@ -121,24 +282,42 @@ def train(train_loader, model, criterion, optimizer, epoch, cuda):
             labels = [l.cuda() for l in labels]
         bsz = labels[0].shape[0]
 
-        features = model(images)
-        loss = 0
-        for i in range(len(features)):
-            loss += criterion(features[i], labels[i])
+        if weights:
+            loss = criterion(images, labels)
+            # update metric
+            losses.update(loss.item(), bsz)
 
-        # update metric
-        losses.update(loss.item(), bsz)
+            # compute gradient and do optimizer step
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
 
-        # compute gradient and do optimizer step
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+            if batch_idx % 50 == 0:
+                print(criterion.weights)
+                print('Train Epoch: {} {}\t'
+                      'Loss: {:.4f} ({:.4f}) \t'.format(
+                    epoch, batch_idx,
+                    losses.val, losses.avg))
+        else:
+            features = model(images)
 
-        if batch_idx % 50 == 0:
-            print('Train Epoch: {} {}\t'
-                  'Loss: {:.4f} ({:.4f}) \t'.format(
-                epoch, batch_idx,
-                losses.val, losses.avg))
+            loss = 0
+            for i in range(len(features)):
+                loss += criterion(features[i], labels[i])
+
+            # update metric
+            losses.update(loss.item(), bsz)
+
+            # compute gradient and do optimizer step
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+
+            if batch_idx % 50 == 0:
+                print('Train Epoch: {} {}\t'
+                      'Loss: {:.4f} ({:.4f}) \t'.format(
+                    epoch, batch_idx,
+                    losses.val, losses.avg))
 
 
 def save_checkpoint(state, epoch, filename='checkpoint.pth.tar'):
